@@ -4,8 +4,6 @@ import NavHeader from '@/components/NavHeader.vue';
 
 import { RouterView } from 'vue-router';
 
-import HomeView from '@/views/HomeView.vue';
-
 import Footer from '@/components/Footer.vue';
 
 </script>
@@ -17,7 +15,6 @@ import Footer from '@/components/Footer.vue';
     </nav>
 
     <RouterView></RouterView>
-    <!-- <HomeView></HomeView> -->
 
     <div class="section-width">
         <Footer></Footer>
