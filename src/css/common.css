@@ -1,0 +1,38 @@
+@import "reset.css";
+
+:root{
+    --primary-bg-color:#baa799;
+    --primary-text-color: #fff;
+    --footer-bg-color:#f3eeea;
+    --label-color:#605E5E;
+}
+
+body{
+    background-color:  #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    min-width: 500px;
+}
+
+.clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.head {
+    position: sticky;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.06);
+    box-sizing: border-box;
+    z-index: 9999;
+}
+
+.font-weight-600{
+    font-weight: 600;
+}
