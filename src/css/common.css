@@ -36,3 +36,14 @@ body{
 .font-weight-600{
     font-weight: 600;
 }
+
+.section-full-width {
+    width: 100%;
+}
+
+
+.section-width {
+    padding: 5px 0px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
