@@ -1,5 +1,7 @@
 <script setup lang="ts">
 
+//新增router
+
 import NavHeader from '@/components/NavHeader.vue';
 import Carousel from '@/components/Carousel.vue';
 import AboutMe from '@/components/AboutMe.vue';
