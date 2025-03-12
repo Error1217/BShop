@@ -4,10 +4,6 @@
 
 <template>
      <div class="container">
-        <header class="head">
-            <slot name="head"></slot>
-        </header>
-
         <div class="top">
             <slot name="breadcrumb"></slot>
         </div>
@@ -22,11 +18,6 @@
                 <slot name="product-describe"></slot>
             </div>
         </div>
-
-        <div class="footer">
-            <slot name="footer"></slot>
-        </div>
-
     </div>
 
 

@@ -2,15 +2,12 @@
 
 import CategoryLayout from '@/components/CategoryLayout.vue';
 
-import NavHeader from '@/components/NavHeader.vue';
 import Breadcrumb from '@/components/Breadcrumb.vue';
 import Aside from '@/components/Aside.vue';
 import ProductListInfo from '@/components/ProductListInfo.vue';
 import ProductList from '@/components/ProductList.vue';
 import ProductItem from '@/components/ProductItem.vue';
 import Paginator from '@/components/Paginator.vue';
-
-import Footer from '@/components/Footer.vue';
 
 import Item01 from "@/assets/items/item01.png"
 
@@ -33,10 +30,6 @@ const products = [
 
 <template>
     <CategoryLayout>
-
-        <template #head>
-            <NavHeader></NavHeader>
-        </template>
         <template #breadcrumb>
             <Breadcrumb></Breadcrumb>
         </template>
@@ -57,9 +50,6 @@ const products = [
             <div class="product-list-paginator">
                 <Paginator></Paginator>
             </div>
-        </template>
-        <template #footer>
-            <Footer></Footer>
         </template>
     </CategoryLayout>
 

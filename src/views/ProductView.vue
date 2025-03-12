@@ -2,12 +2,9 @@
 
 import ProductLayout from '@/components/ProductLayout.vue';
 
-import NavHeader from '@/components/NavHeader.vue';
 import Breadcrumb from '@/components/Breadcrumb.vue';
 import ProductImage from '@/components/ProductImage.vue';
 import ProductDescribe from '@/components/ProductSummary.vue';
-
-import Footer from '@/components/Footer.vue';
 
 import Item01 from "@/assets/items/item01.png"
 import type { IItem } from '@/Interface/IItem';
@@ -50,9 +47,6 @@ const product: IItem = {
 <template>
 
     <ProductLayout>
-        <template #head>
-            <NavHeader></NavHeader>
-        </template>
         <template #breadcrumb>
             <Breadcrumb></Breadcrumb>
         </template>
@@ -61,9 +55,6 @@ const product: IItem = {
         </template>
         <template #product-describe>
             <ProductDescribe :item="product"></ProductDescribe>
-        </template>
-        <template #footer>
-            <Footer></Footer>
         </template>
     </ProductLayout>
 
