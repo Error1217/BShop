@@ -1,5 +1,5 @@
 <script setup lang="ts">
-//HomeView 新增router
+//HomeView 新增route
 
 import NavHeader from '@/components/NavHeader.vue';
 import Carousel from '@/components/Carousel.vue';
