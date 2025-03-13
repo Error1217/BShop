@@ -28,8 +28,6 @@ const carouselList = [
 
 ]
 
-
-console.log(carouselList[0]);
 // 定時輪播
 onMounted(() => {
 

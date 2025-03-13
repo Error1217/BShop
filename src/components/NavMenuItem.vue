@@ -1,20 +1,12 @@
 <script setup lang="ts">
 
-import router from '@/Router';
+import { handleClick } from "@/common"
 
 import type { IRouter } from '@/Interface/IRouter';
-import type { RouteLocationRaw } from 'vue-router';
 
 const props = defineProps<{
     routerObj: IRouter
 }>();
-
-const handleClick = (routerObj: IRouter) => {
-    // if (router.router.currentRoute.value.path !== routerObj.path) {
-
-    // }
-    router.router.push(routerObj as RouteLocationRaw);
-}
 
 </script>
 

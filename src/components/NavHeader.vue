@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import router from '@/Router';
+import Router from '@/Router';
 
 import NavMenuList from '@/components/NavMenuList.vue';
 import NavMenuItem from '@/components/NavMenuItem.vue';
@@ -13,10 +13,10 @@ import NavHeaderLayout from '@/components/NavHeaderLayout.vue';
 import type { IRouter } from '@/Interface/IRouter';
 
 const menuList = [
-    { id: 0, "name": "首頁", router: { path: router.paths.homeView } },
-    { id: 1, "name": "所有商品", router: { path: router.paths.categoryView, query: {type:"products"} } },
-    { id: 2, "name": "女裝", router: { path: router.paths.categoryView, query: {type:"woman"}  } },
-    { id: 3, "name": "鞋子", router: { path: router.paths.categoryView, query: {type:"shoes"}  } },
+    { id: 0, "name": "首頁", router: { path: Router.paths.homeView } },
+    { id: 1, "name": "所有商品", router: { path: Router.paths.categoryView, query: {type:"products"} } },
+    { id: 2, "name": "女裝", router: { path: Router.paths.categoryView, query: {type:"woman"}  } },
+    { id: 3, "name": "鞋子", router: { path: Router.paths.categoryView, query: {type:"shoes"}  } },
 ]
 
 </script>

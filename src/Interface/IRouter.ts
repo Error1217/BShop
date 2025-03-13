@@ -1,4 +1,9 @@
+import type { LocationQueryRaw, RouteParamsRaw, RouteLocationAsPathGeneric } from "vue-router"
+
+
 export interface IRouter{
-    path:string,
-    query?: object
+    path?:string;
+    name?: string;
+    query?: {[key: string]:string | string[]};
+    params?: RouteParamsRaw
 }
