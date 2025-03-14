@@ -34,7 +34,7 @@
     height: 96px;
     padding: 0px 24px;
     box-sizing: border-box;
-    background-color: #fff;
+    background-color: hsla(var(--header-bg-h), var(--header-bg-s), var(--header-bg-l), 1);
 }
 
 .container .top {
@@ -56,11 +56,10 @@
     justify-content: center;
     width: 500px;
     font-size: 26px;
-    
 }
 
 .container .top .title{
-    color: var(--primary-bg-color);
+    color: var(--logo-color);
 }
 
 .container .top .right {

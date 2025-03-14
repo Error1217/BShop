@@ -1,10 +1,28 @@
 @import "reset.css";
 
 :root{
-    --primary-bg-color:#baa799;
-    --primary-text-color: #fff;
-    --footer-bg-color:#f3eeea;
-    --label-color:#605E5E;
+    --logo-color: #F8F8F8;
+
+    --header-bg-h: 40;
+    --header-bg-s: 20%;
+    --header-bg-l: 10%;
+    --header-text-color: #F8F8F8;
+
+    --body-bg-color: #1e1e1e;
+    --hover-color: #707070;
+
+    --breadcrumb-bg-h:300;
+    --breadcrumb-bg-s:100%;
+    --breadcrumb-bg-l:95%;
+    --breadcrumb-text-color: #707070;
+    --breadcrumb-text-color-active: #1e1e1e;
+
+    --primary-bg-color:#707070;
+    --primary-text-color: #F8F8F8;
+
+    --footer-bg-color:#464545;
+    --footer-text-color: #F8F8F8;
+    
 }
 
 body{

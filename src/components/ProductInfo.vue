@@ -33,7 +33,7 @@ const props = defineProps<{
     font-size: 18px;
     
     font-weight: lighter;
-    color: #605E5E;
+    color: var(--primary-text-color);
     margin-bottom: 4px;
 }
 
@@ -42,11 +42,12 @@ const props = defineProps<{
     font-size: 14px;
     font-weight: bold;
     margin-bottom: 4px;
-    color: var(--primary-bg-color);
+    color: var(--primary-text-color);
 }
 
 .info-box .product-price::before{
     content: "NT$";
+    color: var(--primary-text-color);
 }
 
 

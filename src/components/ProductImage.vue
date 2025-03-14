@@ -17,7 +17,7 @@ const props = defineProps<{
         </div>
     </div>
     <div class="img">
-        <img :src="props.item.img" alt="">
+        <img :src="props.item.image_url" alt="">
     </div>
 
 </div>

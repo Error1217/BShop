@@ -24,14 +24,13 @@ const props = defineProps<{
     display: inline-block;
     position: relative;
     text-align: center;
-    color: #666666;
     cursor: pointer;
 }
 
 .menu-item:hover::after {
     content: "";
     position: absolute;
-    background-color: var(--primary-bg-color);
+    background-color: var(--hover-color);
     width: 100%;
     height: 4px;
     bottom: -4px;
@@ -39,6 +38,6 @@ const props = defineProps<{
 }
 
 .menu-item .menu-item-label {
-    color: #666666;
+    color: var(--header-text-color);
 }
 </style>

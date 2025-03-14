@@ -20,6 +20,7 @@
     padding: 15px;
     text-align: center;
     box-sizing: border-box;
+    color: var(--primary-text-color);
 }
 
 </style>

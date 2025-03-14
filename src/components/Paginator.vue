@@ -44,9 +44,12 @@ import ArrowRightIcon from '@/icons/ArrowRightIcon.vue';
     display: flex;
     width: 32px;
     height: 32px;
-    color: var(--label-color);
+    color: var(--primary-text-color);
     align-items: center;
     justify-content: center;
+}
+.paginator .paginator-button>a{
+    color: var(--primary-text-color);
 }
 
 .paginator .paginator-button:last-child{
