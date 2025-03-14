@@ -39,10 +39,10 @@ import YoutubeIcon from '@/icons/socialIcon/YoutubeIcon.vue';
                     <p class="text-title">Social media</p>
                     <div class="contents">
                         <div class="social-icon-list">
-                            <FacebookIcon></FacebookIcon>
-                            <InstagramIcon></InstagramIcon>
-                            <LineIcon></LineIcon>
-                            <YoutubeIcon></YoutubeIcon>
+                            <FacebookIcon color="var(--footer-text-color)"></FacebookIcon>
+                            <InstagramIcon color="var(--footer-text-color)"></InstagramIcon>
+                            <LineIcon color="var(--footer-text-color)"></LineIcon>
+                            <YoutubeIcon width="30px" color="var(--footer-text-color)"></YoutubeIcon>
                         </div>
                     </div>
                 </div>
@@ -86,7 +86,7 @@ import YoutubeIcon from '@/icons/socialIcon/YoutubeIcon.vue';
     padding: 15px;
     line-height: 1.5;
     box-sizing: border-box;
-    color: #000
+    color: var(--footer-text-color);
 }
 
 .footer .footer-container .footer-items .footer-item .text-title {

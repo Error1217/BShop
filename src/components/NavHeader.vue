@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import Router from '@/Router';
+import { paths } from '@/router';
 
 import NavMenuList from '@/components/NavMenuList.vue';
 import NavMenuItem from '@/components/NavMenuItem.vue';
@@ -13,10 +13,10 @@ import NavHeaderLayout from '@/components/NavHeaderLayout.vue';
 import type { IRouter } from '@/Interface/IRouter';
 
 const menuList = [
-    { id: 0, "name": "首頁", router: { path: Router.paths.homeView } },
-    { id: 1, "name": "所有商品", router: { path: Router.paths.categoryView, query: {type:"products"} } },
-    { id: 2, "name": "女裝", router: { path: Router.paths.categoryView, query: {type:"woman"}  } },
-    { id: 3, "name": "鞋子", router: { path: Router.paths.categoryView, query: {type:"shoes"}  } },
+    { id: 0, "name": "首頁", router: { path: paths.homeView } },
+    { id: 1, "name": "所有商品", router: { path: paths.categoryView, query: { type: "products" } } },
+    { id: 2, "name": "女裝", router: { path: paths.categoryView, query: { type: "woman" } } },
+    { id: 3, "name": "鞋子", router: { path: paths.categoryView, query: { type: "shoes" } } },
 ]
 
 </script>
@@ -59,13 +59,13 @@ const menuList = [
 <style scoped>
 .icon-button {
     display: inline-block;
-    color: black;
+    color: var(--header-text-color);
     width: 100%;
     height: 100%;
 
 }
 
 .icon-button:hover {
-    color: #baa799;
+    color: var(--hover-color);
 }
 </style>

@@ -25,7 +25,7 @@
 
 <style scoped>
 .about-me {
-    color: rgb(96, 94, 94);
+    color: var(--primary-text-color);
     width: 100%;
     padding: 15px;
     box-sizing: border-box;

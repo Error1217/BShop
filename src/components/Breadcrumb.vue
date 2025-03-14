@@ -24,7 +24,7 @@ import ArrowRightIcon from '@/icons/ArrowRightIcon.vue';
 <style scoped>
 
 .breadcrumb {
-    background-color: #CCCCCC33
+    background-color: hsla(var(--breadcrumb-bg-h), var(--breadcrumb-bg-s), var(--breadcrumb-bg-l), 1);
 }
 
 .breadcrumb .contents{
@@ -36,7 +36,7 @@ import ArrowRightIcon from '@/icons/ArrowRightIcon.vue';
     padding: 10px 32px;
     box-sizing: border-box;
 
-    color: var(--primary-bg-color);
+    color: var(--breadcrumb-text-color);
 }
 
 .breadcrumb .contents a:visited{
@@ -44,7 +44,7 @@ import ArrowRightIcon from '@/icons/ArrowRightIcon.vue';
 }
 
 .breadcrumb .contents .current:visited{
-    color: #676565;
+    color: var(--breadcrumb-text-color-active);
 }
 
 
@@ -53,7 +53,7 @@ import ArrowRightIcon from '@/icons/ArrowRightIcon.vue';
     width: 24px;
     height: 16px;
     text-align: center;
-    color: #676565;
+    color: var(--breadcrumb-text-color);
 }
 
 </style>

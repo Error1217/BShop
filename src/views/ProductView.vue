@@ -12,7 +12,7 @@ import type { IItem } from '@/Interface/IItem';
 const product: IItem = {
     "id": 0,
     name: "【🌸 Early Spring 】Manju質感經典西裝外套( 1 colors)",
-    img: Item01,
+    image_url: Item01,
     price: 2746,
     label: "早春5% OFF ✨ ",
     summary: `

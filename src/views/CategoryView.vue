@@ -1,5 +1,7 @@
 <script setup lang="ts">
 
+import { onMounted, ref } from 'vue';
+
 import CategoryLayout from '@/components/CategoryLayout.vue';
 
 import Breadcrumb from '@/components/Breadcrumb.vue';
@@ -11,20 +13,31 @@ import Paginator from '@/components/Paginator.vue';
 
 import Item01 from "@/assets/items/item01.png"
 
-const products = [
-    { "id": 0, name: "【🌸 Early Spring 】Manju質感經典西裝外套( 1 colors)", img: Item01, price: 2746, label: "早春5% OFF ✨ " },
-    { "id": 1, name: "【🌸 Early Spring 】Manju質感經典西裝外套( 2 colors)", img: Item01, price: 2746, label: "早春5% OFF ✨ " },
-    { "id": 1, name: "【🌸 Early Spring 】Manju質感經典西裝外套( 3 colors)", img: Item01, price: 2746, label: "早春5% OFF ✨ " },
-    { "id": 1, name: "【🌸 Early Spring 】Manju質感經典西裝外套( 4 colors)", img: Item01, price: 2746, label: "早春5% OFF ✨ " },
-    { "id": 1, name: "【🌸 Early Spring 】Manju質感經典西裝外套( 5 colors)", img: Item01, price: 2746, label: "早春5% OFF ✨ " },
-    { "id": 1, name: "【🌸 Early Spring 】Manju質感經典西裝外套( 6 colors)", img: Item01, price: 2746, label: "早春5% OFF ✨ " },
-    { "id": 1, name: "【🌸 Early Spring 】Manju質感經典西裝外套( 7 colors)", img: Item01, price: 2746, label: "早春5% OFF ✨ " },
-    { "id": 1, name: "【🌸 Early Spring 】Manju質感經典西裝外套( 8 colors)", img: Item01, price: 2746, label: "早春5% OFF ✨ " },
-    { "id": 1, name: "【🌸 Early Spring 】Manju質感經典西裝外套( 8 colors)", img: Item01, price: 2746, label: "早春5% OFF ✨ " },
-    { "id": 1, name: "【🌸 Early Spring 】Manju質感經典西裝外套( 8 colors)", img: Item01, price: 2746, label: "早春5% OFF ✨ " },
-    { "id": 1, name: "【🌸 Early Spring 】Manju質感經典西裝外套( 8 colors)", img: Item01, price: 2746, label: "早春5% OFF ✨ " },
-    { "id": 1, name: "【🌸 Early Spring 】Manju質感經典西裝外套( 8 colors)", img: Item01, price: 2746, label: "早春5% OFF ✨ " },
-]
+/*
+添加資料庫 替換產品圖片
+*/
+import { getProducts } from '@/lib/supabaseClient';
+
+const products = ref();
+// const products = [
+//     { "id": 0, name: "【🌸 Early Spring 】Manju質感經典西裝外套( 1 colors)", img: Item01, price: 2746, label: "早春5% OFF ✨ " },
+//     { "id": 1, name: "【🌸 Early Spring 】Manju質感經典西裝外套( 2 colors)", img: Item01, price: 2746, label: "早春5% OFF ✨ " },
+//     { "id": 1, name: "【🌸 Early Spring 】Manju質感經典西裝外套( 3 colors)", img: Item01, price: 2746, label: "早春5% OFF ✨ " },
+//     { "id": 1, name: "【🌸 Early Spring 】Manju質感經典西裝外套( 4 colors)", img: Item01, price: 2746, label: "早春5% OFF ✨ " },
+//     { "id": 1, name: "【🌸 Early Spring 】Manju質感經典西裝外套( 5 colors)", img: Item01, price: 2746, label: "早春5% OFF ✨ " },
+//     { "id": 1, name: "【🌸 Early Spring 】Manju質感經典西裝外套( 6 colors)", img: Item01, price: 2746, label: "早春5% OFF ✨ " },
+//     { "id": 1, name: "【🌸 Early Spring 】Manju質感經典西裝外套( 7 colors)", img: Item01, price: 2746, label: "早春5% OFF ✨ " },
+//     { "id": 1, name: "【🌸 Early Spring 】Manju質感經典西裝外套( 8 colors)", img: Item01, price: 2746, label: "早春5% OFF ✨ " },
+//     { "id": 1, name: "【🌸 Early Spring 】Manju質感經典西裝外套( 8 colors)", img: Item01, price: 2746, label: "早春5% OFF ✨ " },
+//     { "id": 1, name: "【🌸 Early Spring 】Manju質感經典西裝外套( 8 colors)", img: Item01, price: 2746, label: "早春5% OFF ✨ " },
+//     { "id": 1, name: "【🌸 Early Spring 】Manju質感經典西裝外套( 8 colors)", img: Item01, price: 2746, label: "早春5% OFF ✨ " },
+//     { "id": 1, name: "【🌸 Early Spring 】Manju質感經典西裝外套( 8 colors)", img: Item01, price: 2746, label: "早春5% OFF ✨ " },
+// ]
+
+onMounted(async () => {
+    products.value = await getProducts();
+    console.log(products);
+})
 
 </script>
 
@@ -57,7 +70,7 @@ const products = [
 </template>
 
 <style scoped>
-.product-list-paginator{
+.product-list-paginator {
     text-align: center;
     padding-top: 72px;
 }

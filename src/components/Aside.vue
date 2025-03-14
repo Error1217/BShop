@@ -34,12 +34,12 @@
     display: block;
     padding: 12px 25px 12px 0px;
 
-    color: var(--label-color);
+    color: var(--primary-text-color);
     box-sizing: border-box;
 }
 
 .aside .aside-menu .list-item a:visited{
-    color: var(--label-color);
+    color: var(--primary-text-color);
 }
 
 </style>

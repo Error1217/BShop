@@ -11,11 +11,11 @@ import ArrowDownIcon from '@/icons/ArrowDownIcon.vue';
         <div class="product-list-select">
             <div class="select-sort">
                 <span class="font-weight-600">商品排序</span>
-                <ArrowDownIcon width="12px" height="12px"></ArrowDownIcon>
+                <ArrowDownIcon color="var(--primary-text-color)" width="12px" height="12px"></ArrowDownIcon>
             </div>
             <div class="select-limit font-weight-600">
                 <span class="font-weight-600">每頁顯示 48 個</span>
-                <ArrowDownIcon width="12px" height="12px"></ArrowDownIcon>
+                <ArrowDownIcon color="var(--primary-text-color)" width="12px" height="12px"></ArrowDownIcon>
             </div>
         </div>
         
@@ -35,7 +35,7 @@ import ArrowDownIcon from '@/icons/ArrowDownIcon.vue';
 .product-list-info .label{
     padding-bottom: 25px;
     font-size: 15px;
-    color: var(--label-color);
+    color: var(--primary-text-color);
 }
 
 .product-list-info .product-list-select{
@@ -45,7 +45,7 @@ import ArrowDownIcon from '@/icons/ArrowDownIcon.vue';
 
 .product-list-info .product-list-select span{
     font-size: 12px;
-    color: var(--label-color);
+    color: var(--primary-text-color);
     margin-right: 6px;
 }
 

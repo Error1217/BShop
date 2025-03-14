@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-const paths = {
+export const paths = {
     homeView: "/",
     categoryView: "/category",
     productView: "/products/:id"
 }
 
-const router = createRouter({
+export const router = createRouter({
     history: createWebHistory(),
     routes: [
         {
@@ -28,5 +28,3 @@ const router = createRouter({
         // }
     ]
 })
-
-export default { router, paths };
