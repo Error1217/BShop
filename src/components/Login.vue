@@ -106,7 +106,8 @@ const close = ()=>{
     color: var(--primary-text-color);
 }
 
-.container .main .tab-form .form-item input[type=text]::placeholder {
+.container .main .tab-form .form-item input[type=text]::placeholder,
+.container .main .tab-form .form-item input[type=password]::placeholder {
     color: var(--placeholder-color);
 }
 
