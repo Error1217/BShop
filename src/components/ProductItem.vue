@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { handleClick } from '@/common';
+import { handleClickRouter } from '@/common';
 import ProductImage from './ProductImage.vue';
 import ProductInfo from './ProductInfo.vue';
 
@@ -15,7 +15,7 @@ const props = defineProps<{
 
 <template>
 
-    <div class="product-item" @click="handleClick(props.item.router as IRouter)">
+    <div class="product-item" @click="handleClickRouter(props.item.router as IRouter)">
         <div class="product-image">
             <ProductImage :item="props.item">
                 <template #label-content>

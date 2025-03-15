@@ -5,6 +5,7 @@ import NavHeader from '@/components/NavHeader.vue';
 import { RouterView } from 'vue-router';
 
 import Footer from '@/components/Footer.vue';
+import Login from './components/Login.vue';
 
 
 </script>
@@ -20,15 +21,14 @@ import Footer from '@/components/Footer.vue';
         <div class="section-width">
             <Footer></Footer>
         </div>
+
+        <Login></Login>
     </div>
 
 
 </template>
 
 <style scoped>
-.body{
-    width: 100%;
-    height: 100%;
-    background-color: var(--body-bg-color);
-}
+
+
 </style>
