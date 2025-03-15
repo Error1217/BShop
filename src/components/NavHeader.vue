@@ -12,12 +12,22 @@ import ShoppingCartIcon from '@/icons/ShoppingCartIcon.vue';
 import NavHeaderLayout from '@/components/NavHeaderLayout.vue';
 import type { IRouter } from '@/Interface/IRouter';
 
+import { useWindowStore } from '@/stores/useWindowStore';
+
+
 const menuList = [
     { id: 0, "name": "首頁", router: { path: paths.homeView } },
     { id: 1, "name": "所有商品", router: { path: paths.categoryView, query: { type: "products" } } },
     { id: 2, "name": "女裝", router: { path: paths.categoryView, query: { type: "woman" } } },
     { id: 3, "name": "鞋子", router: { path: paths.categoryView, query: { type: "shoes" } } },
 ]
+
+const windowStore = useWindowStore();
+
+const openLoginWindow = () => {
+    windowStore.openWindow("modal");
+    windowStore.openWindow("loginWindow");
+}
 
 </script>
 
@@ -28,20 +38,20 @@ const menuList = [
         <template #right>
             <NavMenuList :count="3">
                 <template #item-0="{ item }">
-                    <a class="icon-button" href="">
+                    <div class="icon-button" @click="openLoginWindow">
                         <AccountCircleIcon></AccountCircleIcon>
-                    </a>
+                    </div>
 
                 </template>
                 <template #item-1="{ item }">
-                    <a class="icon-button" href="">
+                    <div class="icon-button" >
                         <ShoppingCartIcon></ShoppingCartIcon>
-                    </a>
+                    </div>
                 </template>
                 <template #item-2="{ item }">
-                    <a class="icon-button" href="">
+                    <div class="icon-button" >
                         <SearchIcon></SearchIcon>
-                    </a>
+                    </div>
                 </template>
             </NavMenuList>
         </template>
@@ -62,7 +72,7 @@ const menuList = [
     color: var(--header-text-color);
     width: 100%;
     height: 100%;
-
+    cursor: pointer;
 }
 
 .icon-button:hover {

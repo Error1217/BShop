@@ -1,17 +1,17 @@
 <script setup lang="ts">
 
-import { handleClick } from "@/common"
-
+import { handleClickRouter } from '@/common';
 import type { IRouter } from '@/Interface/IRouter';
 
 const props = defineProps<{
     routerObj: IRouter
 }>();
 
+
 </script>
 
 <template>
-    <div class="menu-item" @click="handleClick(props.routerObj)">
+    <div class="menu-item" @click="handleClickRouter(props.routerObj)">
         <div class="menu-item-label">
             <slot></slot>
         </div>
