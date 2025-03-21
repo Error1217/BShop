@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import type { IItem } from "./Interface/IItem";
+import { useUserStores } from "./stores/userStore";
 
 export const addRouteForItem = (item: IItem) => {
     item.router = { name: `ProductView`, params: { name: `${item.name}`, id: `${item.id}` } };
@@ -37,17 +38,30 @@ export const router = createRouter({
         {
             path: paths.shoppingCartView,
             name: "shoppingCartView",
-            component: () => import("@/views/ShoppingCartView.vue")
+            component: () => import("@/views/ShoppingCartView.vue"),
+            meta: {
+                requiresAuth: true
+            }
         },
         // {
         //     path: "*",
         //     component: import("@/views/HomeView.vue")
         // }
     ],
-    scrollBehavior(to, from, savedPosition){
+    scrollBehavior(to, from, savedPosition) {
         return {
-            top:0,
+            top: 0,
             behavior: "instant"
         }
+    }
+});
+
+router.beforeEach(async(to, from, next) =>{
+    const userStore = useUserStores();
+
+    if(to.meta.requiresAuth && !userStore.user){
+        
+    }else{
+        next();
     }
 })
