@@ -3,15 +3,18 @@
 import type { IItem } from '@/Interface/IItem';
 
 const props = defineProps<{
-    item: IItem
+    item: IItem;
+    isLabel: Boolean;
 }>();
+
+
 
 </script>
 
 <template>
 
-<div class="box">
-    <div class="label-bg">
+<div v-if="item" class="box">
+    <div v-if="props.isLabel" class="label-bg">
         <div class="label-content ">
             <slot name="label-content"></slot>
         </div>
@@ -30,6 +33,8 @@ const props = defineProps<{
     width: 100%;
     font-size: 0px;
     position: relative;
+    overflow: hidden;
+    cursor: pointer;
 }
 
 .box .label-bg{
@@ -37,7 +42,7 @@ const props = defineProps<{
     left: 0;
     padding: 4px 16px;
     font-size: 10px;
-    background-color: var(--primary-bg-color);
+    background-color: var(--label-color);
 
     position: absolute;
     z-index: 10;

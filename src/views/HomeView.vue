@@ -9,7 +9,7 @@ import ProductItem from '@/components/ProductItem.vue';
 
 import Item01 from "@/assets/items/item01.png"
 import type { IRouter } from '@/Interface/IRouter';
-import type { IItem } from '@/Interface/IItem';
+import { addRouteForItems } from '@/router';
 
 
 let newArrivals = [
@@ -40,14 +40,8 @@ const weeklyBest = [
 ]
 
 
-const addRoute = (items: Array<IItem>) => {
-    for (let i = 0; i < items.length; i++) {
-        items[i].router = { name: `ProductView`, params: { id: `${items[i].name}-${items[i].id}` } };
-    }
-}
-
-addRoute(newArrivals);
-addRoute(weeklyBest);
+addRouteForItems(newArrivals);
+addRouteForItems(weeklyBest);
 
 </script>
 
@@ -68,7 +62,7 @@ addRoute(weeklyBest);
                 <template #title>WEEKLY BEST</template>
 
                 <template #default="{ item }">
-                    <ProductImage :item="item">
+                    <ProductImage :item="item" :isLabel="true">
                         <template #label-content>{{ item.label }}</template>
                     </ProductImage>
                 </template>
@@ -81,7 +75,7 @@ addRoute(weeklyBest);
                 <template #title>NEW ARRIVALS</template>
 
                 <template #default="{ item }">
-                    <ProductItem :item="item" :width="`100px`">
+                    <ProductItem :item="item" :isLabel="true" :width="`100px`">
                         <template #label-content>{{ item.label }}</template>
                     </ProductItem>
                 </template>

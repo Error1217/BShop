@@ -57,11 +57,11 @@ import ArrowRightIcon from '@/icons/ArrowRightIcon.vue';
 }
 
 .paginator .paginator-button.active{
-    background-color: var(--primary-bg-color);
+    background-color: var(--btn-bg-color);
 }
 
 .paginator .paginator-button.active a{
-    color: var(--primary-text-color);
+    color: var(--btn-text-color);
 }
 
 
