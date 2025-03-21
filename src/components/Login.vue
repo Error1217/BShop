@@ -111,12 +111,6 @@ const close = ()=>{
     color: var(--placeholder-color);
 }
 
-.line {
-    width: 100%;
-    height: 0;
-    border-bottom: 1px var(--placeholder-color) solid;
-}
-
 .container .main .btn-group {
     display: flex;
     margin: 20px 0px;
@@ -131,6 +125,13 @@ const close = ()=>{
     border: 0px;
     padding: 0px;
     cursor: pointer;
+    background-color: var(--btn-bg-color);
+    color: var(--btn-text-color);
+}
+
+.container .main .btn-group .btn-item:hover{
+    background-color: var(--btn-bg-hover-color);
+    color: var(--btn-text-hover-color);
 }
 
 .container .main .forget-password {
@@ -144,8 +145,8 @@ const close = ()=>{
 .container .main .google-login {
 
     margin: 20px auto;
-    color: var(--primary-text-color);
-    background-color: var(--primary-bg-color);
+    color: var(--btn-text-color);
+    background-color: var(--btn-bg-color);
     width: 200px;
     padding: 20px 30px;
     font-size: 14px;

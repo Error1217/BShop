@@ -13,6 +13,7 @@ import NavHeaderLayout from '@/components/NavHeaderLayout.vue';
 import type { IRouter } from '@/Interface/IRouter';
 
 import { useWindowStore } from '@/stores/useWindowStore';
+import { handleClickRouter } from '@/common';
 
 
 const menuList = [
@@ -22,12 +23,18 @@ const menuList = [
     { id: 3, "name": "鞋子", router: { path: paths.categoryView, query: { type: "shoes" } } },
 ]
 
+
 const windowStore = useWindowStore();
 
 const openLoginWindow = () => {
     windowStore.openWindow("modal");
     windowStore.openWindow("loginWindow");
 }
+
+const openShoppingCartWindow = () => {
+    handleClickRouter({ path: paths.shoppingCartView })
+};
+
 
 </script>
 
@@ -44,12 +51,12 @@ const openLoginWindow = () => {
 
                 </template>
                 <template #item-1="{ item }">
-                    <div class="icon-button" >
+                    <div class="icon-button" @click="openShoppingCartWindow">
                         <ShoppingCartIcon></ShoppingCartIcon>
                     </div>
                 </template>
                 <template #item-2="{ item }">
-                    <div class="icon-button" >
+                    <div class="icon-button">
                         <SearchIcon></SearchIcon>
                     </div>
                 </template>

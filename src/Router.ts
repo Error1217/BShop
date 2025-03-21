@@ -3,7 +3,8 @@ import { createRouter, createWebHistory } from "vue-router";
 export const paths = {
     homeView: "/",
     categoryView: "/category",
-    productView: "/products/:id"
+    productView: "/products/:id",
+    shoppingCartView: "/cart"
 }
 
 export const router = createRouter({
@@ -21,6 +22,11 @@ export const router = createRouter({
             path: paths.productView,
             name: "ProductView",
             component: () => import("@/views/ProductView.vue")
+        },
+        {
+            path: paths.shoppingCartView,
+            name: "shoppingCartView",
+            component: () => import("@/views/ShoppingCartView.vue")
         },
         // {
         //     path: "*",

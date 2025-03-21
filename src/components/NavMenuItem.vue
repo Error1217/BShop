@@ -30,7 +30,7 @@ const props = defineProps<{
 .menu-item:hover::after {
     content: "";
     position: absolute;
-    background-color: var(--hover-color);
+    background-color: var(--btn-bg-hover-color);
     width: 100%;
     height: 4px;
     bottom: -4px;

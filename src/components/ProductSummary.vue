@@ -2,6 +2,8 @@
 
 import ArrowLeftIcon from '@/icons/ArrowLeftIcon.vue';
 import ArrowRightIcon from '@/icons/ArrowRightIcon.vue';
+import QuantitySelector from './QuantitySelector.vue';
+import VariationSelector from './VariationSelector.vue';
 
 import type { IItem } from '@/Interface/IItem';
 import { computed, ref } from 'vue';
@@ -9,37 +11,6 @@ import { computed, ref } from 'vue';
 const props = defineProps<{
     item: IItem
 }>();
-
-const quantity = ref(1);
-const selectedIndex = ref({
-    color:0,
-    size: 0
-});
-
-const variationSelectlabel = {
-    color: {
-        title: "顏色",
-        type: ["知性深灰色", "溫柔杏色"]
-    },
-    size: {
-        title: "尺寸",
-        type: ["XL", "L"]
-    },
-};
-
-const quantityPlus = () => {
-    quantity.value++;
-};
-
-const quantityMinus = () => {
-    if (quantity.value > 1) {
-        quantity.value--;
-    }
-};
-
-const selectVariation = (variation: keyof typeof variationSelectlabel, index: number) => {
-    selectedIndex.value[variation] = index;
-};
 
 
 </script>
@@ -58,31 +29,11 @@ const selectVariation = (variation: keyof typeof variationSelectlabel, index: nu
             <div class="product-price font-weight-600">
                 NT$2890
             </div>
-            <div v-for="(variation, variationIndex) in (variationSelectlabel)" class="variation">
-                <div class="variation-title font-weight-600">
-                    {{ `${variation.title}：` }}
-                    <span class="font-weight-600">{{ variationSelectlabel[variationIndex].type[selectedIndex[variationIndex]] }}</span>
-                </div>
-                <div class="variation-select-box">
-                    <div v-for="(item, index) in variation.type" :key="index" class="variation-select-label"
-                        :class="{ 'active': (selectedIndex[variationIndex] == index) }" @click="selectVariation(variationIndex, index)">
-                        {{ item }}
-                    </div>
-                    <!-- <div class="variation-select-label active">溫柔杏色</div> -->
-                </div>
-            </div>
+            <VariationSelector title="顏色" :content="[`知性深灰色`,`溫柔杏色`]"></VariationSelector>
+            <VariationSelector title="尺寸" :content="[`L`,`XL`]"></VariationSelector>
+            
             <div class="product-quantity">
-                <div class="input-group">
-                    <div class="input-group-btn">
-                        <button type="button" class="minus font-weight-600" @click="quantityMinus">-
-                        </button>
-                    </div>
-                    <input type="text" class="font-weight-600" name="" id="" v-model.number="quantity">
-                    <div class="input-group-btn">
-                        <button type="button" class="plus font-weight-600" @click="quantityPlus">+
-                        </button>
-                    </div>
-                </div>
+                <QuantitySelector></QuantitySelector>
             </div>
             <div class="button-container">
                 <button type="button" class="btn-purchase-action">加入購物車</button>
@@ -228,13 +179,13 @@ const selectVariation = (variation: keyof typeof variationSelectlabel, index: nu
     flex-grow: 1;
     height: 47px;
     border: none;
-    background-color: var(--primary-bg-color);
-    color: var(--primary-text-color);
+    background-color: var(--btn-bg-color);
+    color: var(--btn-text-color);
     cursor: pointer;
 }
 
 .product-describe .product-action .button-container .btn-purchase-action:hover{
-    background-color: #F3EEEA;
+    background-color: var(--btn-bg-hover-color);
 }
 
 </style>

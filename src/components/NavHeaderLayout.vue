@@ -3,26 +3,28 @@
 </script>
 
 <template>
-
-    <div class="container">
-        <div class="top">
-            <div class="left">
-                <slot name="left"></slot>
-            </div>
-            <h1 class="center title">
-                <slot name="title"></slot>
-            </h1>
-            <div class="right">
-                <div class="menu-list">
-                    <slot name="right"></slot>    
+    <div class="section-full-width">
+        <div class="container">
+            <div class="top">
+                <div class="left">
+                    <slot name="left"></slot>
+                </div>
+                <h1 class="center title">
+                    <slot name="title"></slot>
+                </h1>
+                <div class="right">
+                    <div class="menu-list">
+                        <slot name="right"></slot>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="bottom">
-            <slot name="bottom"></slot>
+            <div class="bottom">
+                <slot name="bottom"></slot>
+            </div>
         </div>
     </div>
+
 
 </template>
 
@@ -41,6 +43,7 @@
     display: flex;
     flex-direction: row;
     height: 70%;
+
 }
 
 .container .top .left {
@@ -48,6 +51,7 @@
     align-items: center;
     width: 500px;
     /* background-color: red; */
+    flex: 1;
 }
 
 .container .top .center {
@@ -56,9 +60,10 @@
     justify-content: center;
     width: 500px;
     font-size: 26px;
+    flex: 1;
 }
 
-.container .top .title{
+.container .top .title {
     color: var(--logo-color);
 }
 
@@ -68,6 +73,7 @@
     justify-content: flex-end;
     width: 500px;
     /* background-color: blue; */
+    flex: 1;
 }
 
 .container .bottom {
