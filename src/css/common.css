@@ -1,14 +1,14 @@
 @import "reset.css";
 
 :root{
-    --logo-color: #F8F8F8;
+    --logo-color: #1e1e1e;
 
-    --header-bg-h: 40;
-    --header-bg-s: 20%;
-    --header-bg-l: 10%;
-    --header-text-color: #F8F8F8;
+    --header-bg-h: 200;
+    --header-bg-s: 100%;
+    --header-bg-l: 60%;
+    --header-text-color: #1e1e1e;
 
-    --body-bg-color: #1e1e1e;
+    --body-bg-color: #F8F8F8;
     --hover-color: #707070;
     --placeholder-color: #a9a9a9;
 
@@ -19,11 +19,28 @@
     --breadcrumb-text-color-active: #1e1e1e;
 
     --primary-bg-color:#707070;
-    --primary-text-color: #F8F8F8;
+    --primary-text-color: #1e1e1e;
 
     --footer-bg-color:#464545;
     --footer-text-color: #F8F8F8;
+
+    --cart-item-text-color:#1e1e1e;
+    --cart-item-bg-color: #fff8f4;
+    --cart-item-edit-btn-bg-color: #F8F8F8;
+
+    --btn-bg-color: #70bcff;
+    --btn-text-color: #F8F8F8;
     
+    --btn-bg-hover-color: #5994c8;
+    --btn-text-hover-color: #F8F8F8;
+
+    --remove-btn-bg-color: #b70000;
+    --remove-btn-text-color: #222222;
+
+    --variation-border-color: rgba(204, 204, 204, 0.5);
+
+    --disabled-bg-color:#F8F8F8;
+    --disabled-text-color:#1e1e1e;
 }
 
 .body{
@@ -52,6 +69,12 @@
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.06);
     box-sizing: border-box;
     z-index: 999;
+}
+
+.line {
+    width: 100%;
+    height: 0;
+    border-bottom: 1px var(--placeholder-color) solid;
 }
 
 .font-weight-600{
