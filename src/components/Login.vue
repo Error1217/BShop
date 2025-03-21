@@ -2,12 +2,34 @@
 import { useWindowStore } from '@/stores/useWindowStore';
 import Modal from './Modal.vue';
 import CloseIcon from '@/icons/CloseIcon.vue';
+import { useUserStores } from '@/stores/userStore';
+import { ref } from 'vue';
+import { handleClickRouter } from '@/common';
+import { paths } from '@/router';
 
 const windowStore = useWindowStore();
 
-const close = ()=>{
+const close = () => {
     windowStore.closeWindow("modal");
     windowStore.closeWindow("loginWindow");
+}
+
+const userStore = useUserStores();
+
+const email = ref<string>("");
+const passward = ref<string>("");
+
+const signUpClickHandle = async () => {
+    await userStore.signUp(email.value, passward.value);
+}
+
+const signInClickHandle = async () => {
+    const success = await userStore.signIn(email.value, passward.value);
+    if (success) {
+        handleClickRouter({path: paths.homeView})
+        close();
+    }
+
 }
 
 
@@ -16,23 +38,23 @@ const close = ()=>{
 <template>
     <Modal>
         <div class="container" v-if="windowStore.loginWindowVisible">
-            <div class="title">登入</div>
+            <div class="title"> 登入/註冊</div>
             <div class="main">
                 <div class="tab-form">
                     <div class="form-item login-id">
                         <div class="form-info">帳號</div>
-                        <input type="text" name="" id="" placeholder="請輸入電子信箱">
+                        <input type="email" name="" id="email" placeholder="請輸入電子信箱" v-model="email">
                     </div>
                     <div class="line"></div>
                     <div class="form-item login-password">
                         <div class="form-info">密碼</div>
-                        <input type="password" name="" id="" placeholder="請輸入密碼">
+                        <input type="password" name="" id="pwd" placeholder="請輸入密碼" v-model="passward">
                     </div>
                 </div>
 
                 <div class="btn-group">
-                    <button class="btn-item">註冊</button>
-                    <button class="btn-item">登入</button>
+                    <button class="btn-item" @click="signUpClickHandle">註冊</button>
+                    <button class="btn-item" @click="signInClickHandle">登入</button>
                 </div>
                 <div class="forget-password">忘記密碼？</div>
                 <div class="line"></div>
@@ -97,7 +119,7 @@ const close = ()=>{
     color: var(--primary-text-color);
 }
 
-.container .main .tab-form .form-item input[type=text],
+.container .main .tab-form .form-item input[type=email],
 .container .main .tab-form .form-item input[type=password] {
     flex-grow: 1;
     margin-left: 20px;
@@ -106,7 +128,7 @@ const close = ()=>{
     color: var(--primary-text-color);
 }
 
-.container .main .tab-form .form-item input[type=text]::placeholder,
+.container .main .tab-form .form-item input[type=email]::placeholder,
 .container .main .tab-form .form-item input[type=password]::placeholder {
     color: var(--placeholder-color);
 }
@@ -129,7 +151,7 @@ const close = ()=>{
     color: var(--btn-text-color);
 }
 
-.container .main .btn-group .btn-item:hover{
+.container .main .btn-group .btn-item:hover {
     background-color: var(--btn-bg-hover-color);
     color: var(--btn-text-hover-color);
 }

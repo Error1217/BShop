@@ -8,12 +8,13 @@ import NavMenuItem from '@/components/NavMenuItem.vue';
 import AccountCircleIcon from '@/icons/AccountCircleIcon.vue';
 import SearchIcon from '@/icons/SearchIcon.vue';
 import CartIcon from './CartIcon.vue';
+import SignOutBtn from './SignOutBtn.vue';
 
 import NavHeaderLayout from '@/components/NavHeaderLayout.vue';
 import type { IRouter } from '@/Interface/IRouter';
-
-import { useWindowStore } from '@/stores/useWindowStore';
 import { handleClickRouter } from '@/common';
+import { useWindowStore } from '@/stores/useWindowStore';
+import { useUserStores } from '@/stores/userStore';
 
 
 const menuList = [
@@ -25,14 +26,28 @@ const menuList = [
 
 
 const windowStore = useWindowStore();
+const userStore = useUserStores();
 
 const openLoginWindow = () => {
     windowStore.openWindow("modal");
     windowStore.openWindow("loginWindow");
 }
 
+const openUserWindow = () =>{
+    if(!userStore.user){
+        openLoginWindow();
+    }else{
+
+    }
+}
+
 const openShoppingCartWindow = () => {
-    handleClickRouter({ path: paths.shoppingCartView })
+    if(!userStore.user){
+        openLoginWindow();
+    }else{
+        handleClickRouter({ path: paths.shoppingCartView });
+    }
+    
 };
 
 
@@ -43,9 +58,9 @@ const openShoppingCartWindow = () => {
         <template #left></template>
         <template #title>BShop</template>
         <template #right>
-            <NavMenuList :count="3">
+            <NavMenuList :count="4">
                 <template #item-0="{ item }">
-                    <div class="icon-button" @click="openLoginWindow">
+                    <div class="icon-button" @click="openUserWindow">
                         <AccountCircleIcon></AccountCircleIcon>
                     </div>
 
@@ -58,6 +73,11 @@ const openShoppingCartWindow = () => {
                 <template #item-2="{ item }">
                     <div class="icon-button">
                         <SearchIcon></SearchIcon>
+                    </div>
+                </template>
+                <template #item-3="{ item }">
+                    <div class="icon-button">
+                        <SignOutBtn></SignOutBtn>
                     </div>
                 </template>
             </NavMenuList>
