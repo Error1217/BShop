@@ -7,7 +7,7 @@ import NavMenuItem from '@/components/NavMenuItem.vue';
 
 import AccountCircleIcon from '@/icons/AccountCircleIcon.vue';
 import SearchIcon from '@/icons/SearchIcon.vue';
-import ShoppingCartIcon from '@/icons/ShoppingCartIcon.vue';
+import CartIcon from './CartIcon.vue';
 
 import NavHeaderLayout from '@/components/NavHeaderLayout.vue';
 import type { IRouter } from '@/Interface/IRouter';
@@ -52,7 +52,7 @@ const openShoppingCartWindow = () => {
                 </template>
                 <template #item-1="{ item }">
                     <div class="icon-button" @click="openShoppingCartWindow">
-                        <ShoppingCartIcon></ShoppingCartIcon>
+                        <CartIcon></CartIcon>
                     </div>
                 </template>
                 <template #item-2="{ item }">

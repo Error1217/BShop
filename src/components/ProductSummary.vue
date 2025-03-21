@@ -6,7 +6,6 @@ import QuantitySelector from './QuantitySelector.vue';
 import VariationSelector from './VariationSelector.vue';
 
 import type { IItem } from '@/Interface/IItem';
-import { computed, ref } from 'vue';
 
 const props = defineProps<{
     item: IItem
@@ -17,8 +16,8 @@ const props = defineProps<{
 
 <template>
     <div class="product-describe">
-        <div class="product-title">{{ props.item.name }}</div>
-        <p class="product-summary" v-html="item.summary"></p>
+        <div v-if="item" class="product-title">{{ props.item.name }}</div>
+        <pre v-if="item" class="product-summary" v-html="item.summary"></pre>
         <hr>
         <div class="product-promotions">
             <p class="product-promotions-tag">
@@ -29,7 +28,7 @@ const props = defineProps<{
             <div class="product-price font-weight-600">
                 NT$2890
             </div>
-            <VariationSelector title="顏色" :content="[`知性深灰色`,`溫柔杏色`]"></VariationSelector>
+            <!-- <VariationSelector title="顏色" :content="[`知性深灰色`,`溫柔杏色`]"></VariationSelector> -->
             <VariationSelector title="尺寸" :content="[`L`,`XL`]"></VariationSelector>
             
             <div class="product-quantity">
@@ -50,13 +49,13 @@ const props = defineProps<{
 .product-describe .product-title {
     font-size: 26px;
     margin-bottom: 16px;
-    color: var(--label-color);
+    color: var(--primary-text-color);
 }
 
 .product-describe .product-summary {
     font-size: 14px;
     line-height: 1.5;
-    color: var(--label-color);
+    color: var(--primary-text-color);
     padding-bottom: 14px;
     box-sizing: border-box;
 
@@ -81,13 +80,13 @@ const props = defineProps<{
     font-size: 14px;
     line-height: 1.5;
     border-left: 2px var(--primary-bg-color) solid;
-    color: var(--label-color);
+    color: var(--primary-text-color);
 }
 
 .product-describe .product-action .product-price {
     margin-bottom: 21px;
     font-size: 16px;
-    color: var(--label-color);
+    color: var(--primary-text-color);
     line-height: 1.5;
 }
 
@@ -108,7 +107,7 @@ const props = defineProps<{
     border: 1px rgba(204, 204, 204, 0.5) solid;
     border-radius: 4px;
     font-size: 14px;
-    color: var(--label-color);
+    color: var(--primary-text-color);
     box-sizing: border-box;
     cursor: pointer;
 

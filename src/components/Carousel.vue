@@ -228,6 +228,6 @@ const rightButton = () => {
 }
 
 .view .indicator .active {
-    background-color: var(--primary-bg-color);
+    background-color: var(--label-color);
 }
 </style>
