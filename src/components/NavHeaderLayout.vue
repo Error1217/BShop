@@ -37,6 +37,7 @@
     padding: 0px 24px;
     box-sizing: border-box;
     background-color: hsla(var(--header-bg-h), var(--header-bg-s), var(--header-bg-l), 1);
+    box-shadow: 0px 0px 3px var(--header-box-shadow-color);
 }
 
 .container .top {

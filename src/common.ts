@@ -1,6 +1,6 @@
 import type { RouteLocationRaw } from "vue-router";
 import type { IRouter } from "@/Interface/IRouter";
-import { router } from "@/router";
+import { router } from "@/Router";
 import { useWindowStore } from "./stores/useWindowStore";
 
 
