@@ -40,7 +40,7 @@ const scrollTop = () => {
     width: 100%;
     height: 100%;
     color: var(--primary-bg-color);
-    
+    transition: .2s;
 }
 
 .container .arrow-top:hover{

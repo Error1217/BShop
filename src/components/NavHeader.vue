@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { paths } from '@/router';
+import { paths } from '@/Router';
 
 import NavMenuList from '@/components/NavMenuList.vue';
 import NavMenuItem from '@/components/NavMenuItem.vue';
@@ -37,7 +37,7 @@ const openUserWindow = () =>{
     if(!userStore.user){
         openLoginWindow();
     }else{
-
+        handleClickRouter({ name: "UserView", params: {id: userStore.user.id}});
     }
 }
 

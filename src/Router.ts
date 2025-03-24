@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import type { IItem } from "./Interface/IItem";
 import { useUserStores } from "./stores/userStore";
+import { ref } from "vue";
 
 export const addRouteForItem = (item: IItem) => {
     item.router = { name: `ProductView`, params: { name: `${item.name}`, id: `${item.id}` } };
@@ -16,7 +17,8 @@ export const paths = {
     homeView: "/",
     categoryView: "/category",
     productView: "/products/:name-:id",
-    shoppingCartView: "/cart"
+    shoppingCartView: "/cart",
+    userView: "/users/:id",
 }
 
 export const router = createRouter({
@@ -24,25 +26,64 @@ export const router = createRouter({
     routes: [
         {
             path: paths.homeView,
-            component: () => import("@/views/HomeView.vue")
+            components: {
+                default: () => import("@/views/HomeView.vue")
+            }
         },
         {
             path: paths.categoryView,
-            component: () => import("@/views/CategoryView.vue")
+            components: {
+                default: () => import("@/views/CategoryView.vue")
+            }
         },
         {
             path: paths.productView,
             name: "ProductView",
-            component: () => import("@/views/ProductView.vue")
+            components: {
+                default: () => import("@/views/ProductView.vue")
+            }
         },
         {
             path: paths.shoppingCartView,
             name: "shoppingCartView",
-            component: () => import("@/views/ShoppingCartView.vue"),
+            components: {
+                default: () => import("@/views/ShoppingCartView.vue"),
+            },
             meta: {
                 requiresAuth: true
             }
         },
+        {
+            path: paths.userView,
+            name: "UserView",
+            components: {
+                default: () => import("@/views/UserView.vue"),
+            },
+            redirect: (to) => {
+                return `/users/${to.params.id}`
+            },
+            children: [
+                {
+                    path: "",
+                    name: "UserProfile",
+                    component: () => import("@/components/UserProfile.vue"),
+                },
+                {
+                    path: "profile",
+                    name: "UserProfileBtn",
+                    component: () => import("@/components/UserProfile.vue"),
+                },
+                {
+                    path: "favorite",
+                    name: "UserFavoriteListBtn",
+                    component: () => import("@/components/UserFavoriteList.vue"),
+                }
+            ],
+            meta: {
+                requiresAuth: true
+            },
+        },
+
         // {
         //     path: "*",
         //     component: import("@/views/HomeView.vue")
@@ -56,12 +97,12 @@ export const router = createRouter({
     }
 });
 
-router.beforeEach(async(to, from, next) =>{
+router.beforeEach(async (to, from) => {
     const userStore = useUserStores();
+    if (to.meta.requiresAuth && !userStore.user) {
+        return {path: "/"}
+    } else {
 
-    if(to.meta.requiresAuth && !userStore.user){
-        
-    }else{
-        next();
     }
-})
+});
+
