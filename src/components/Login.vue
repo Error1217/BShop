@@ -2,7 +2,7 @@
 import { useWindowStore } from '@/stores/useWindowStore';
 import Modal from './Modal.vue';
 import CloseIcon from '@/icons/CloseIcon.vue';
-import { useUserStores } from '@/stores/userStore';
+import { useUserStore } from '@/stores/useUserStore';
 import { ref } from 'vue';
 import { handleClickRouter } from '@/common';
 import { paths } from '@/router';
@@ -14,7 +14,7 @@ const close = () => {
     windowStore.closeWindow("loginWindow");
 }
 
-const userStore = useUserStores();
+const userStore = useUserStore();
 
 const email = ref<string>("");
 const passward = ref<string>("");

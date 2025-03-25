@@ -1,7 +1,7 @@
 import type { IRouter } from '@/Interface/IRouter';
 
 export interface IItem {
-    id: number,
+    id: string,
     name: string,
     image_url?: string,
     price?: number,

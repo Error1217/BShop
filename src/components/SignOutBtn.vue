@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { handleClickRouter } from '@/common';
 import { paths } from '@/router';
-import { useUserStores } from '@/stores/userStore';
+import { useUserStore } from '@/stores/useUserStore';
 
-const userStore = useUserStores();
+const userStore = useUserStore();
 
 const signOutClickHandle = async () => {
     await userStore.signOut();

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { handleClickRouter } from '@/common';
 import { paths, router } from '@/Router';
-import { useUserStores } from '@/stores/userStore';
+import { useUserStore } from '@/stores/useUserStore';
 import { ref } from 'vue';
 
-const userStore = useUserStores();
+const userStore = useUserStore();
 
 const navBarList = [
     {title:"個人資料", router: { name: "UserProfileBtn", params: {id: userStore.user?.id}}},
