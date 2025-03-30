@@ -12,11 +12,17 @@ const props = defineProps({
     }
 });
 
+const emit = defineEmits(["size"]);
+
 const selectedIndex = ref(0);
+
+const getVariationByIndex = (index:number) => {
+    return props.content[index];
+}
 
 const selectVariation = (index: number) => {
     selectedIndex.value = index;
-    return props.content[index];
+    emit("size", getVariationByIndex(index));
 };
 
 
@@ -26,7 +32,7 @@ const selectVariation = (index: number) => {
     <div class="variation">
         <div class="variation-title font-weight-600">
             {{ `${props.title}：` }}
-            <span class="font-weight-600">{{ selectVariation(selectedIndex) }}</span>
+            <span class="font-weight-600">{{ getVariationByIndex(selectedIndex) }}</span>
         </div>
         <div class="variation-select-box">
             <div v-for="(item, index) in props.content" :key="index" class="variation-select-label"

@@ -5,10 +5,9 @@ export interface IItem {
     name: string,
     image_url?: string,
     price?: number,
-    colors?: string,
-    size?: string
-    summary?: string
+    summary?: string,
     describe?: string,
-    label?: string
+    label?: string,
     router?: IRouter
+    Product_Variants?: []
 }

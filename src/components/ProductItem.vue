@@ -9,7 +9,6 @@ import type { IRouter } from '@/Interface/IRouter';
 
 const props = defineProps<{
     item: IItem,
-    isLabel : Boolean
 }>();
 </script>
 
@@ -17,7 +16,7 @@ const props = defineProps<{
 
     <div class="product-item" @click="handleClickRouter(props.item.router as IRouter)">
         <div class="product-image">
-            <ProductImage :item="props.item" :isLabel="props.isLabel">
+            <ProductImage :item="props.item">
                 <template #label-content>
                     <slot name="label-content"></slot>
                 </template>
