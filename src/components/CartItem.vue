@@ -4,12 +4,28 @@ import CartItemLayout from './CartItemLayout.vue';
 import QuantitySelector from './QuantitySelector.vue';
 
 import DeleteIcon from '@/icons/DeleteIcon.vue';
+import { ref } from 'vue';
 
-const deleteItem = () => {
-    //刪除頁面樣式
-    //刪除資料庫的物品
+const props = defineProps({
+    id: {
+        type: String,
+    },
+    title: {
+        type: String,
+    },
+    variation: {
+        type: String,
+    },
+    image_url: {
+        type: String,
+    }
+})
+
+const emit = defineEmits(["removeEvent"]);
+
+const reomveItem = () => {
+    emit("removeEvent", {itemId: props.id, isRemove:true});
 }
-
 
 </script>
 
@@ -19,19 +35,21 @@ const deleteItem = () => {
             <input type="checkbox" name="" id="">
         </template>
         <template #image>
-            <img :src="item01" alt="">
+            <img :src="props.image_url" alt="">
         </template>
         <template #title>
-            黑色絲緞高領襯衫
+            {{ props.title }}
         </template>
         <template #variation>
-            <div class="">知性深灰色 / XL</div>
+            <div class="">{{ props.variation }}</div>
         </template>
         <template #product-quantity>
             <QuantitySelector></QuantitySelector>
         </template>
         <template #reomve-btn>
-            <DeleteIcon></DeleteIcon>
+            <div @click="reomveItem">
+                <DeleteIcon></DeleteIcon>
+            </div>
         </template>
     </CartItemLayout>
 </template>

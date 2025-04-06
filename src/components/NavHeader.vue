@@ -14,19 +14,19 @@ import NavHeaderLayout from '@/components/NavHeaderLayout.vue';
 import type { IRouter } from '@/Interface/IRouter';
 import { handleClickRouter } from '@/common';
 import { useWindowStore } from '@/stores/useWindowStore';
-import { useUserStores } from '@/stores/userStore';
+import { useUserStore } from '@/stores/useUserStore';
 
 
 const menuList = [
-    { id: 0, "name": "首頁", router: { path: paths.homeView } },
-    { id: 1, "name": "所有商品", router: { path: paths.categoryView, query: { type: "products" } } },
-    { id: 2, "name": "女裝", router: { path: paths.categoryView, query: { type: "woman" } } },
-    { id: 3, "name": "鞋子", router: { path: paths.categoryView, query: { type: "shoes" } } },
+    { title: "首頁", router: { path: paths.homeView } },
+    { title: "所有商品", router: { path: paths.categoryView, query: { type: "products" } } },
+    { title: "女裝", router: { path: paths.categoryView, query: { type: "woman" } } },
+    { title: "鞋子", router: { path: paths.categoryView, query: { type: "shoes" } } },
 ]
 
 
 const windowStore = useWindowStore();
-const userStore = useUserStores();
+const userStore = useUserStore();
 
 const openLoginWindow = () => {
     windowStore.openWindow("modal");
@@ -86,7 +86,7 @@ const openShoppingCartWindow = () => {
         <template #bottom>
             <NavMenuList :items="menuList">
                 <template #default="{ item }">
-                    <NavMenuItem :routerObj="item.router as IRouter">{{ item.name }}</NavMenuItem>
+                    <NavMenuItem :routerObj="item.router as IRouter">{{ item.title }}</NavMenuItem>
                 </template>
             </NavMenuList>
         </template>

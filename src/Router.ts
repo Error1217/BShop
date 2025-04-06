@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import type { IItem } from "./Interface/IItem";
-import { useUserStores } from "./stores/userStore";
+import { useUserStore } from "./stores/useUserStore";
 import { ref } from "vue";
 
 export const addRouteForItem = (item: IItem) => {
@@ -98,7 +98,7 @@ export const router = createRouter({
 });
 
 router.beforeEach(async (to, from) => {
-    const userStore = useUserStores();
+    const userStore = useUserStore();
     if (to.meta.requiresAuth && !userStore.user) {
         return {path: "/"}
     } else {

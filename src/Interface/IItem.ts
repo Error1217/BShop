@@ -1,14 +1,13 @@
 import type { IRouter } from '@/Interface/IRouter';
 
 export interface IItem {
-    id: number,
+    id: string,
     name: string,
     image_url?: string,
     price?: number,
-    colors?: string,
-    size?: string
-    summary?: string
+    summary?: string,
     describe?: string,
-    label?: string
+    label?: string,
     router?: IRouter
+    Product_Variants?: []
 }

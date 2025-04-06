@@ -1,10 +1,10 @@
 <script setup lang="ts">
 
-import type { IItem } from "@/Interface/IItem.ts";
+import type { ILink } from "@/Interface/ILink";
 
 defineProps({
     items:{
-        type: Array<IItem>,
+        type: Array<ILink>,
     },
     count:{
         type: Number

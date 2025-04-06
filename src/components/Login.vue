@@ -2,10 +2,10 @@
 import { useWindowStore } from '@/stores/useWindowStore';
 import Modal from './Modal.vue';
 import CloseIcon from '@/icons/CloseIcon.vue';
-import { useUserStores } from '@/stores/userStore';
+import { useUserStore } from '@/stores/useUserStore';
 import { ref } from 'vue';
 import { handleClickRouter } from '@/common';
-import { paths } from '@/router';
+import { paths } from '@/Router';
 
 const windowStore = useWindowStore();
 
@@ -14,7 +14,7 @@ const close = () => {
     windowStore.closeWindow("loginWindow");
 }
 
-const userStore = useUserStores();
+const userStore = useUserStore();
 
 const email = ref<string>("");
 const passward = ref<string>("");
@@ -43,18 +43,18 @@ const signInClickHandle = async () => {
                 <div class="tab-form">
                     <div class="form-item login-id">
                         <div class="form-info">帳號</div>
-                        <input type="email" name="" id="email" placeholder="請輸入電子信箱" v-model="email">
+                        <input type="email" name="" id="email" placeholder="請輸入電子信箱" v-model="email" autocomplete="off">
                     </div>
                     <div class="line"></div>
                     <div class="form-item login-password">
                         <div class="form-info">密碼</div>
-                        <input type="password" name="" id="pwd" placeholder="請輸入密碼" v-model="passward">
+                        <input type="password" name="" id="pwd" placeholder="請輸入密碼" v-model="passward" autocomplete="off">
                     </div>
                 </div>
 
                 <div class="btn-group">
-                    <button class="btn-item" @click="signUpClickHandle">註冊</button>
-                    <button class="btn-item" @click="signInClickHandle">登入</button>
+                    <button class="btn-item" @click="signUpClickHandle" autocomplete="off">註冊</button>
+                    <button class="btn-item" @click="signInClickHandle" autocomplete="off">登入</button>
                 </div>
                 <div class="forget-password">忘記密碼？</div>
                 <div class="line"></div>

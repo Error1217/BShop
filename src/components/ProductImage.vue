@@ -4,19 +4,16 @@ import type { IItem } from '@/Interface/IItem';
 
 const props = defineProps<{
     item: IItem;
-    isLabel: Boolean;
 }>();
-
-
 
 </script>
 
 <template>
 
-<div v-if="item" class="box">
-    <div v-if="props.isLabel" class="label-bg">
+<div v-if="props.item" class="box">
+    <div v-if="props.item.label !== ' '" class="label-bg">
         <div class="label-content ">
-            <slot name="label-content"></slot>
+            {{ props.item.label }}
         </div>
     </div>
     <div class="img">

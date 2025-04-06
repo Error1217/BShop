@@ -1,16 +1,79 @@
 <script setup lang="ts">
 
-import ArrowLeftIcon from '@/icons/ArrowLeftIcon.vue';
-import ArrowRightIcon from '@/icons/ArrowRightIcon.vue';
 import QuantitySelector from './QuantitySelector.vue';
 import VariationSelector from './VariationSelector.vue';
 
 import type { IItem } from '@/Interface/IItem';
+import { useUserStore } from '@/stores/useUserStore';
+import { useWindowStore } from '@/stores/useWindowStore';
+import { computed, ref } from 'vue';
+import { setCartItem, getSku } from '@/lib/supabaseClient';
+import type { UUID } from 'crypto';
+import type { ICartItem } from '@/Interface/ICartItem';
 
 const props = defineProps<{
-    item: IItem
+    item: IItem,
+    variants: any[]
 }>();
 
+const size = props.variants.map((item) => {
+    return item.size;
+})
+
+const userStore = useUserStore();
+const windowStore = useWindowStore();
+
+
+
+// console.log(_size);
+
+const openLoginWindow = () => {
+    windowStore.openWindow("modal");
+    windowStore.openWindow("loginWindow");
+}
+
+
+const product_size = ref();
+// const product_quantity = ref(1);
+
+
+//針對選擇的尺寸變更價格
+const price = computed(() => {
+    if (product_size.value) {
+        return props.variants[0].price;
+    }
+    return props.variants[0].price;
+});
+
+
+const addItem = async () => {
+    const user = userStore.user;
+
+    if (user) {
+        //商品加入購物車
+        const sku = await getSku(props.item.id as UUID, product_size.value || props.variants[0].size);
+        // console.log(sku);
+        if (sku !== undefined) {
+            setCartItem(user.id as UUID, {
+                sku: sku,
+                userId: user.id,
+                name: props.item.name,
+                price: props.item.price,
+                quantity: 1,
+            } as ICartItem);
+        }
+
+
+
+    } else {
+        openLoginWindow();
+    }
+
+}
+
+const getSize = (size: string) => {
+    product_size.value = size;
+}
 
 </script>
 
@@ -26,16 +89,16 @@ const props = defineProps<{
         </div>
         <div class="product-action">
             <div class="product-price font-weight-600">
-                NT$2890
+                {{ price }}
             </div>
             <!-- <VariationSelector title="顏色" :content="[`知性深灰色`,`溫柔杏色`]"></VariationSelector> -->
-            <VariationSelector title="尺寸" :content="[`L`,`XL`]"></VariationSelector>
-            
+            <VariationSelector @size="getSize" title="尺寸" :content="size"></VariationSelector>
+
             <div class="product-quantity">
-                <QuantitySelector></QuantitySelector>
+                <!-- <QuantitySelector></QuantitySelector> -->
             </div>
             <div class="button-container">
-                <button type="button" class="btn-purchase-action">加入購物車</button>
+                <button type="button" class="btn-purchase-action" @click="addItem">加入購物車</button>
                 <button type="button" class="btn-purchase-action">直接購買</button>
             </div>
         </div>
@@ -81,6 +144,10 @@ const props = defineProps<{
     line-height: 1.5;
     border-left: 2px var(--primary-bg-color) solid;
     color: var(--primary-text-color);
+}
+
+.product-describe .product-action .product-price::before{
+    content: "NT$";
 }
 
 .product-describe .product-action .product-price {
@@ -168,13 +235,13 @@ const props = defineProps<{
     text-align: center;
 }
 
-.product-describe .product-action .button-container{
+.product-describe .product-action .button-container {
     display: flex;
     gap: 8px;
 
 }
 
-.product-describe .product-action .button-container .btn-purchase-action{
+.product-describe .product-action .button-container .btn-purchase-action {
     flex-grow: 1;
     height: 47px;
     border: none;
@@ -183,8 +250,7 @@ const props = defineProps<{
     cursor: pointer;
 }
 
-.product-describe .product-action .button-container .btn-purchase-action:hover{
+.product-describe .product-action .button-container .btn-purchase-action:hover {
     background-color: var(--btn-bg-hover-color);
 }
-
 </style>

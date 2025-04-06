@@ -11,15 +11,23 @@ import ProductList from '@/components/ProductList.vue';
 import ProductItem from '@/components/ProductItem.vue';
 import Paginator from '@/components/Paginator.vue';
 
-import { getProducts } from '@/lib/supabaseClient';
-import { addRouteForItems } from '@/router';
+import { getProducts, getProductVariants } from '@/lib/supabaseClient';
+import { addRouteForItems } from '@/Router';
+import type { UUID } from 'crypto';
 
 const products = ref();
 
 
 onMounted(async () => {
-    products.value = await getProducts();
+    products.value = await getProducts(" *, Product_Variants!inner(price)") || [];
     addRouteForItems(products.value);
+
+    for (let index = 0; index < products.value.length; index++) {
+        const element = products.value[index];
+        element.price = element.Product_Variants[0].price;
+        // console.log(element);
+    }
+    
 })
 
 

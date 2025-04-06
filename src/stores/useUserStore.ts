@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import type { AuthError, User as SupaBaseUser, Session } from "@supabase/supabase-js"
 import { supabase } from "@/lib/supabaseClient";
 
-export const useUserStores = defineStore("user", {
+export const useUserStore= defineStore("user", {
     state: () => {
         return {
             user: null as SupaBaseUser | null,
