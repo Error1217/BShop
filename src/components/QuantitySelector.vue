@@ -1,18 +1,40 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, type Ref } from 'vue';
 
 
-const quantity = ref(1);
+const props = defineProps({
+    quantity:{
+        type: Number,
+        required:true
+    }
+})
+
+const emit = defineEmits(["quantityEvent"]);
+
+const quantity = ref(props.quantity || 0);
+
+
+const sendQuantity = ()=>{
+    if (quantity.value >= 1) {
+        emit("quantityEvent", quantity.value);    
+    }
+    
+}
+
 
 const quantityPlus = () => {
     quantity.value++;
+    sendQuantity();
 };
 
 const quantityMinus = () => {
     if (quantity.value > 1) {
         quantity.value--;
+        sendQuantity();
     }
 };
+
+
 
 </script>
 
@@ -22,7 +44,7 @@ const quantityMinus = () => {
             <button type="button" class="minus font-weight-600" @click="quantityMinus">-
             </button>
         </div>
-        <input type="text" class="font-weight-600" name="" id="" v-model.number="quantity" >
+        <input type="text" class="font-weight-600" name="" id="" v-model.number="quantity" @change="sendQuantity" min="1">
         <div class="input-group-btn">
             <button type="button" class="plus font-weight-600" @click="quantityPlus">+
             </button>
@@ -31,7 +53,6 @@ const quantityMinus = () => {
 </template>
 
 <style scoped>
-
 .input-group {
     display: inline-table;
     width: 147px;
@@ -76,10 +97,8 @@ const quantityMinus = () => {
 }
 
 .input-group .input-group-btn button:disabled,
-.input-group input:disabled{
+.input-group input:disabled {
     background-color: var(--disabled-bg-color);
     color: var(--disabled-text-color);
 }
-
-
 </style>

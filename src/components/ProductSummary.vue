@@ -33,14 +33,24 @@ const openLoginWindow = () => {
 }
 
 
-const product_size = ref();
+const product_size = ref(props.variants[0].size);
 // const product_quantity = ref(1);
+const product_price = ref(props.variants[0].price);
 
 
-//針對選擇的尺寸變更價格
 const price = computed(() => {
-    if (product_size.value) {
+    if (!product_size.value) {
         return props.variants[0].price;
+    }
+
+    for (let index = 0; index < props.variants.length; index++) {
+        const element = props.variants[index];
+
+        if (element.size === product_size.value) {
+            product_price.value = element.price;
+            return element.price;
+        }
+        
     }
     return props.variants[0].price;
 });
@@ -58,8 +68,10 @@ const addItem = async () => {
                 sku: sku,
                 userId: user.id,
                 name: props.item.name,
-                price: props.item.price,
+                price: product_price.value,
                 quantity: 1,
+                size: product_size.value,
+                image_url: props.item.image_url
             } as ICartItem);
         }
 

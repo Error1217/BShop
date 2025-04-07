@@ -10,9 +10,6 @@ import carouselItem02 from "@/assets/carouselList/carouselItem02.png"
 import carouselItem03 from "@/assets/carouselList/carouselItem03.png"
 import carouselItem04 from "@/assets/carouselList/carouselItem04.png"
 
-
-import type { IItem } from '@/Interface/IItem';
-
 const props = defineProps({
     autoCarousel: {
         type: Boolean,

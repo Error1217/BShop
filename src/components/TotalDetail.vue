@@ -1,5 +1,13 @@
 <script setup lang="ts">
 
+const props = defineProps({
+    total_price: {
+        type: Number,
+        requured: true
+    }
+})
+
+
 
 </script>
 
@@ -12,7 +20,7 @@
                 商品總金額
             </div>
             <div class="price font-weight-600">
-                ＄12345
+                {{ props.total_price }}
             </div>
         </div>
         <div class="line"></div>
@@ -22,7 +30,7 @@
                     結帳金額
                 </div>
                 <div class="price font-weight-600">
-                    ＄12345
+                    {{ props.total_price }}
                 </div>
             </div>
             <button type="button">結帳</button>
@@ -54,13 +62,17 @@
     padding: 20px;
 }
 
-.total-detail .total{
+.total-detail .total {
     display: flex;
     justify-content: space-between;
 }
 
-.total-detail .total-group .total .price{
-    color: #ea1717;
+.total-detail .price::before {
+    content: "NT$ ";
+}
+
+.total-detail .total-group .total .price {
+    color: var(--purchase-btn-bg-color);
 }
 
 
@@ -72,7 +84,7 @@
     border-radius: 8px;
     border: none;
     cursor: pointer;
-    background-color: #ea1717;
+    background-color: var(--purchase-btn-bg-color);
     color: var(--btn-text-color);
 }
 </style>
