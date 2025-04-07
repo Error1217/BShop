@@ -4,10 +4,10 @@ import CartItemLayout from './CartItemLayout.vue';
 import QuantitySelector from './QuantitySelector.vue';
 
 import DeleteIcon from '@/icons/DeleteIcon.vue';
-import { ref } from 'vue';
+import { ref, type Ref } from 'vue';
 
 const props = defineProps({
-    id: {
+    sku: {
         type: String,
     },
     title: {
@@ -18,15 +18,32 @@ const props = defineProps({
     },
     image_url: {
         type: String,
+    },
+    price: {
+        type: Number
+    },
+    quantity: {
+        type: Number,
+        required:true,
     }
 })
 
-const emit = defineEmits(["removeEvent"]);
+const quantity = ref(props.quantity || 0);
+
+const emit = defineEmits(["removeEvent", "quantityEvent"]);
 
 const reomveItem = () => {
-    emit("removeEvent", {itemId: props.id, isRemove:true});
+    emit("removeEvent", { sku: props.sku, isRemove: true });
 }
 
+const updateQuantity = () => {
+    emit("quantityEvent", { "sku": props.sku, "quantity": quantity.value });
+}
+
+const handleUpdateQuantity = (newQuantity:number) => {
+    quantity.value = newQuantity
+    updateQuantity();
+}
 </script>
 
 <template>
@@ -44,7 +61,10 @@ const reomveItem = () => {
             <div class="">{{ props.variation }}</div>
         </template>
         <template #product-quantity>
-            <QuantitySelector></QuantitySelector>
+            <QuantitySelector :quantity="quantity" @quantityEvent="handleUpdateQuantity"></QuantitySelector>
+        </template>
+        <template #product_price>
+            {{ props.price }}
         </template>
         <template #reomve-btn>
             <div @click="reomveItem">

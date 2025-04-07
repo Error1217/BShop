@@ -14,7 +14,7 @@ export const supabase = createClient(supabaseUrl, supabaseKey);
  * 
  */
 
-export async function getProducts(columnName:string= "*") {
+export async function getProducts(columnName: string = "*") {
     try {
         const { data, error } = await supabase.from("Products").select(columnName);
 
@@ -30,7 +30,7 @@ export async function getProducts(columnName:string= "*") {
     }
 }
 
-export async function getProduct(id: UUID, columnName:string= "*") {
+export async function getProduct(id: UUID, columnName: string = "*") {
     try {
         const { data, error } = await supabase.from("Products").select(columnName).eq("id", id).single();
 
@@ -46,7 +46,7 @@ export async function getProduct(id: UUID, columnName:string= "*") {
     }
 }
 
-export async function getProductVariants(id: UUID, columnName:string= "*") {
+export async function getProductVariants(id: UUID, columnName: string = "*") {
     try {
         const { data, error } = await supabase.from("Product_Variants").select(columnName).eq("product_id", id);
 
@@ -54,9 +54,9 @@ export async function getProductVariants(id: UUID, columnName:string= "*") {
             throw new Error(error.message);
         }
 
-        const arr = data.map((item)=>{
+        const arr = data.map((item) => {
             return item[columnName as any]
-        }); 
+        });
 
         return arr || [];
 
@@ -69,9 +69,9 @@ export async function getProductVariants(id: UUID, columnName:string= "*") {
 export async function getSku(id: UUID, size: string) {
     try {
         const { data, error } = await supabase
-        .from("Product_Variants")
-        .select("sku")
-        .eq("product_id", id).eq("size", size).single();
+            .from("Product_Variants")
+            .select("sku")
+            .eq("product_id", id).eq("size", size).single();
 
         if (error) {
             throw new Error(error.message);
@@ -87,7 +87,7 @@ export async function getSku(id: UUID, size: string) {
 
 //儲存到購物車
 
-export async function setCartItem(userId:UUID, cartItem:ICartItem) {
+export async function setCartItem(userId: UUID, cartItem: ICartItem) {
 
     try {
 
@@ -96,9 +96,11 @@ export async function setCartItem(userId:UUID, cartItem:ICartItem) {
         const { data, error } = await supabase.from("Cart_Items").insert([{
             sku: cartItem.sku,
             userId: userId,
-            name:cartItem.name,
-            price:cartItem.price,
+            name: cartItem.name,
+            price: cartItem.price,
             quantity: cartItem.quantity,
+            size: cartItem.size,
+            image_url: cartItem.image_url
         }]);
 
         if (error) {
@@ -114,7 +116,37 @@ export async function setCartItem(userId:UUID, cartItem:ICartItem) {
 }
 
 export async function removeCartItem(sku: string) {
+    try {
+        const { error } = await supabase.from("Cart_Items").delete().eq("sku", sku);
+        
+        if(error){
+            throw new Error(error.message)
+        }
 
+        return true;
+
+    } catch (error) {
+        console.log("刪除失敗", error)
+        return false;
+    }
+       
+}
+
+export async function updateCartItem(userId:UUID, sku:string, newData: any) {
+    try {
+        const { error } = await supabase.from("Cart_Items").update(newData).eq("sku", sku).eq("userId", userId);
+        
+        if(error){
+            throw new Error(error.message)
+        }
+
+        return true;
+
+    } catch (error) {
+        console.log("更新數量失敗", error)
+        return false;
+    }
+       
 }
 
 export async function getCartAllItem(userId: string) {

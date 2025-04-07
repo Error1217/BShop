@@ -16,11 +16,14 @@
                 <slot name="title"></slot>
             </div>
             <div class="variable-group">
-                <div class="variation">
+                <div class="variable_item variation">
                     <slot name="variation"></slot>
                 </div>
-                <div class="product-quantity">
+                <div class="variable_item product-quantity">
                     <slot name="product-quantity"></slot>
+                </div>
+                <div class="variable_item product_price font-weight-600">
+                    <slot name="product_price"></slot>
                 </div>
             </div>
 
@@ -85,22 +88,38 @@
     justify-content: space-between;
     padding-left: 0px;
     padding-right: 30px;
+    margin: 8px 0px;
 }
 
-.cart-item-group .content .variable-group .variation {
+.cart-item-group .content .variable-group .variable_item{
     display: flex;
     align-items: center;
     font-size: 14px;
 }
 
+/* .cart-item-group .content .variable-group .variation {
+    
+    
+} */
+
 .cart-item-group .content .variable-group .product-quantity {
     /* width: 147px; */
     height: 38px;
     border: 1px var(--variation-border-color) solid;
-    margin: 8px 10px;
+    margin: 0px 10px;
     border-radius: 4px;
     overflow: hidden;
 
+    margin-left: auto;
+}
+
+.cart-item-group .content .variable-group .product_price{
+    color: var(--purchase-btn-bg-color);
+    
+}
+
+.cart-item-group .content .variable-group .product_price::before{
+    content: "NT$";
 }
 
 
