@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { paths } from '@/Router';
+import { paths } from '@/router/index';
 
 import NavMenuList from '@/components/NavMenuList.vue';
 import NavMenuItem from '@/components/NavMenuItem.vue';
@@ -9,6 +9,7 @@ import AccountCircleIcon from '@/icons/AccountCircleIcon.vue';
 import SearchIcon from '@/icons/SearchIcon.vue';
 import CartIcon from './CartIcon.vue';
 import SignOutBtn from './SignOutBtn.vue';
+import BackendBtn from './BackendBtn.vue';
 
 import NavHeaderLayout from '@/components/NavHeaderLayout.vue';
 import type { IRouter } from '@/Interface/IRouter';
@@ -58,7 +59,7 @@ const openShoppingCartWindow = () => {
         <template #left></template>
         <template #title>BShop</template>
         <template #right>
-            <NavMenuList :count="4">
+            <NavMenuList :count="5">
                 <template #item-0="{ item }">
                     <div class="icon-button" @click="openUserWindow">
                         <AccountCircleIcon></AccountCircleIcon>
@@ -78,6 +79,11 @@ const openShoppingCartWindow = () => {
                 <template #item-3="{ item }">
                     <div class="icon-button">
                         <SignOutBtn></SignOutBtn>
+                    </div>
+                </template>
+                <template #item-4="{ item }">
+                    <div class="icon-button">
+                        <BackendBtn></BackendBtn>
                     </div>
                 </template>
             </NavMenuList>

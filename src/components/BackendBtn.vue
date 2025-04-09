@@ -1,30 +1,31 @@
 <script setup lang="ts">
 import { handleClickRouter } from '@/common';
-import { paths } from '@/router/index';
+import { paths } from '@/router';
 import { useUserStore } from '@/stores/useUserStore';
 
 const userStore = useUserStore();
 
-const signOutClickHandle = async () => {
-    await userStore.signOut();
-    handleClickRouter({ path: paths.homeView });
+const backendClickHandle = async () => {
+    if(userStore.user){
+        handleClickRouter({ path: paths.backendView});
+    }
 }
 
 </script>
 
 <template>
-    <button v-if="userStore.user" type="button" @click="signOutClickHandle">登出</button>
+    <button v-if="userStore.role==='admin' " type="button" @click="backendClickHandle">後台管理</button>
 </template>
 
 <style scoped>
-button{
+button {
     background-color: transparent;
     border: none;
     cursor: pointer;
     color: var(--logo-color);
 }
 
-button:hover{
+button:hover {
     color: var(--hover-color);
 }
 </style>
