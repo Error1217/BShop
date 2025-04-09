@@ -5,7 +5,7 @@ import CloseIcon from '@/icons/CloseIcon.vue';
 import { useUserStore } from '@/stores/useUserStore';
 import { ref } from 'vue';
 import { handleClickRouter } from '@/common';
-import { paths } from '@/Router';
+import { paths } from '@/router/index';
 
 const windowStore = useWindowStore();
 

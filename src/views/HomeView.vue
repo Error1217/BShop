@@ -9,7 +9,7 @@ import ProductItem from '@/components/ProductItem.vue';
 
 import Item01 from "@/assets/items/item01.png"
 import type { IRouter } from '@/Interface/IRouter';
-import { addRouteForItems } from '@/Router';
+import { addRouteForItems } from '@/router/index';
 
 
 let newArrivals = [

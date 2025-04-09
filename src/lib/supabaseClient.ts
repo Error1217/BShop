@@ -1,6 +1,4 @@
 import type { ICartItem } from "@/Interface/ICartItem";
-import type { IItem } from "@/Interface/IItem";
-import { convertToICartItem } from "@/utils/cart";
 import { createClient } from "@supabase/supabase-js";
 import type { UUID } from "crypto";
 
@@ -91,8 +89,6 @@ export async function setCartItem(userId: UUID, cartItem: ICartItem) {
 
     try {
 
-        console.log(userId, cartItem);
-
         const { data, error } = await supabase.from("Cart_Items").insert([{
             sku: cartItem.sku,
             userId: userId,
@@ -156,6 +152,7 @@ export async function getCartAllItem(userId: string) {
         if (error) {
             throw new Error(error.message);
         }
+        data.sort((a, b)=>{ return a.id - b.id});
 
         return data;
 

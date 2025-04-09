@@ -12,7 +12,7 @@ import ProductItem from '@/components/ProductItem.vue';
 import Paginator from '@/components/Paginator.vue';
 
 import { getProducts, getProductVariants } from '@/lib/supabaseClient';
-import { addRouteForItems } from '@/Router';
+import { addRouteForItems } from '@/router/index';
 import type { UUID } from 'crypto';
 
 const products = ref();
