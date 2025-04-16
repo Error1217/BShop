@@ -88,7 +88,13 @@ export async function getSku(id: UUID, size: string) {
 export async function setCartItem(userId: UUID, cartItem: ICartItem) {
 
     try {
+        //先看user是否已加入
+        const cart_item = await getCartItem(userId, cartItem.sku);
+        if(cart_item){
+            throw new Error("已擁有該商品");
+        }
 
+        //未加入再進行添加
         const { data, error } = await supabase.from("Cart_Items").insert([{
             sku: cartItem.sku,
             userId: userId,
@@ -114,8 +120,8 @@ export async function setCartItem(userId: UUID, cartItem: ICartItem) {
 export async function removeCartItem(sku: string) {
     try {
         const { error } = await supabase.from("Cart_Items").delete().eq("sku", sku);
-        
-        if(error){
+
+        if (error) {
             throw new Error(error.message)
         }
 
@@ -125,14 +131,14 @@ export async function removeCartItem(sku: string) {
         console.log("刪除失敗", error)
         return false;
     }
-       
+
 }
 
-export async function updateCartItem(userId:UUID, sku:string, newData: any) {
+export async function updateCartItem(userId: UUID, sku: string, newData: any) {
     try {
         const { error } = await supabase.from("Cart_Items").update(newData).eq("sku", sku).eq("userId", userId);
-        
-        if(error){
+
+        if (error) {
             throw new Error(error.message)
         }
 
@@ -142,7 +148,7 @@ export async function updateCartItem(userId:UUID, sku:string, newData: any) {
         console.log("更新數量失敗", error)
         return false;
     }
-       
+
 }
 
 export async function getCartAllItem(userId: string) {
@@ -152,12 +158,32 @@ export async function getCartAllItem(userId: string) {
         if (error) {
             throw new Error(error.message);
         }
-        data.sort((a, b)=>{ return a.id - b.id});
+        data.sort((a, b) => { return a.id - b.id });
 
         return data;
 
     } catch (error) {
         console.error("獲取購物車失敗", error);
+        return undefined;
+    }
+}
+
+export async function getCartItem(userId: string, sku: string) {
+    try {
+        const { data, error } = await supabase.from("Cart_Items")
+            .select()
+            .eq("userId", userId)
+            .eq("sku", sku)
+            .single();
+
+        if (error) {
+            throw new Error(error.message);
+        }
+
+        return data;
+
+    } catch (error) {
+        console.error("在購物車未找到該商品", error);
         return undefined;
     }
 }
