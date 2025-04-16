@@ -72,8 +72,25 @@ export const routes = [
     {
         path: paths.backendView,
         name: "BackendView",
-        component: ()=> import("@/views/BackendView.vue"),
-        meta:{
+        components: {
+            default: () => import("@/views/BackendView.vue"),
+        },
+        redirect: (to: RouteLocationGeneric) => {
+            return `/backend/home`
+        },
+        children: [
+            {
+                path: "home",
+                name: "BackendHomeBtn",
+                component: () => import("@/components/BackendHome.vue"),
+            },
+            {
+                path: "product",
+                name: "BackendProductBtn",
+                component: () => import("@/components/BackendProduct.vue"),
+            }
+        ],
+        meta: {
             requiresAuth: true,
             roles: ["admin"]
         }

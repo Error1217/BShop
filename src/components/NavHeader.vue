@@ -92,7 +92,7 @@ const openShoppingCartWindow = () => {
         <template #bottom>
             <NavMenuList :items="menuList">
                 <template #default="{ item }">
-                    <NavMenuItem :routerObj="item.router as IRouter">{{ item.title }}</NavMenuItem>
+                    <NavMenuItem :routerObj="item.router">{{ item.title }}</NavMenuItem>
                 </template>
             </NavMenuList>
         </template>

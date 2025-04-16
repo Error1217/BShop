@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { handleClickRouter } from '@/common';
-import { paths, router } from '@/router/index';
 import { useUserStore } from '@/stores/useUserStore';
 import { ref } from 'vue';
 

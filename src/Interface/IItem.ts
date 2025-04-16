@@ -9,5 +9,6 @@ export interface IItem {
     describe?: string,
     label?: string,
     router?: IRouter
-    Product_Variants?: []
+    Product_Variants?: [],
+    created_at?: string
 }

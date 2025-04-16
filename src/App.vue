@@ -5,8 +5,8 @@ import NavHeader from '@/components/NavHeader.vue';
 import { RouterView } from 'vue-router';
 
 import Footer from '@/components/Footer.vue';
-import Login from './components/Login.vue';
-import GoToTopButton from './components/GoToTopButton.vue';
+import Login from '@/components/Login.vue';
+import GoToTopButton from '@/components/GoToTopButton.vue';
 
 </script>
 

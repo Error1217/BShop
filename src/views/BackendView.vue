@@ -1,25 +1,35 @@
 <script setup lang="ts">
-import UserLayout from '@/components/UserLayout.vue';
-import UserNavBar from '@/components/UserNavBar.vue';
+import BackendLayout from "@/components/BackendLayout.vue";
+import BackendSideNavList from "@/components/BackendSideNavList.vue";
+import type { ILink } from "@/Interface/ILink";
 
+const navList = [
+    {title: "首頁", router: {name: "BackendHomeBtn"}},
+    {title: "商品管理", router: {name: "BackendProductBtn"}},
+] as Array<ILink>
 
 
 </script>
 
 <template>
-    <UserLayout>
-        <template #user-nav-bar>
-            <UserNavBar></UserNavBar>
+    <BackendLayout>
+
+        <template #title>
+            後台管理系統
         </template>
-        <template #user-info-group>
+
+        <template #sideNavList>
+            <BackendSideNavList :navList="navList"></BackendSideNavList>
+        </template>
+
+        <template #main>
             <RouterView v-slot="{ Component }">
                 <KeepAlive>
                     <Component :is="Component"></Component>
                 </KeepAlive>
-
             </RouterView>
         </template>
-    </UserLayout>
+    </BackendLayout>
 
 </template>
 

@@ -19,7 +19,7 @@ const products = ref();
 
 
 onMounted(async () => {
-    products.value = await getProducts(" *, Product_Variants!inner(price)") || [];
+    products.value = await getProducts(" *, Product_Variants!inner(price)");
     addRouteForItems(products.value);
 
     for (let index = 0; index < products.value.length; index++) {
