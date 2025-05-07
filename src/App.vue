@@ -5,7 +5,6 @@ import NavHeader from '@/components/NavHeader.vue';
 import { RouterView } from 'vue-router';
 
 import Footer from '@/components/Footer.vue';
-import Login from '@/components/Login.vue';
 import GoToTopButton from '@/components/GoToTopButton.vue';
 
 </script>
@@ -22,15 +21,11 @@ import GoToTopButton from '@/components/GoToTopButton.vue';
             <Footer></Footer>
         </div>
 
-        <Login></Login>
-
         <div class="go-to-top">
             <GoToTopButton></GoToTopButton>
         </div>
         
     </div>
-
-
 </template>
 
 <style scoped>

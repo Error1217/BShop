@@ -12,11 +12,10 @@ import SignOutBtn from './SignOutBtn.vue';
 import BackendBtn from './BackendBtn.vue';
 
 import NavHeaderLayout from '@/components/NavHeaderLayout.vue';
-import type { IRouter } from '@/Interface/IRouter';
 import { handleClickRouter } from '@/common';
-import { useWindowStore } from '@/stores/useWindowStore';
 import { useUserStore } from '@/stores/useUserStore';
 
+import { showLogin } from '@/utils/login';
 
 const menuList = [
     { title: "首頁", router: { path: paths.homeView } },
@@ -26,12 +25,10 @@ const menuList = [
 ]
 
 
-const windowStore = useWindowStore();
 const userStore = useUserStore();
 
 const openLoginWindow = () => {
-    windowStore.openWindow("modal");
-    windowStore.openWindow("loginWindow");
+    showLogin();
 }
 
 const openUserWindow = () =>{

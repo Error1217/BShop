@@ -6,7 +6,7 @@ import Breadcrumb from '@/components/Breadcrumb.vue';
 import ProductImage from '@/components/ProductImage.vue';
 import ProductDescribe from '@/components/ProductSummary.vue';
 
-import { getProduct, getProductVariants } from '@/lib/supabaseClient';
+import { getProduct } from '@/lib/supabaseClient';
 
 import { useRoute } from 'vue-router';
 import type { UUID } from 'crypto';

@@ -2,18 +2,33 @@ import { defineStore } from "pinia";
 import type { AuthError, User as SupaBaseUser, Session } from "@supabase/supabase-js"
 import { supabase } from "@/lib/supabaseClient";
 
+enum SignUpState{
+    SUCCESS,
+    FAIL,
+    EXIST,
+}
+
+
 export const useUserStore = defineStore("user", {
     state: () => {
         return {
             user: null as SupaBaseUser | null,
             role: null as String | null,
             session: null as Session | null,
-            error: null as AuthError | null
-
+            error: null as AuthError | null,
+            SignUpState: SignUpState
         }
     },
     actions: {
-        async signUp(email: string, password: string): Promise<boolean> {
+        async signUp(email: string, password: string): Promise<SignUpState> {
+            //檢查帳號是否存在
+            const { data:existing, error:selectError } = await supabase.from("User_Role").select("email").eq("email", email);
+
+            if(existing && existing.length !== 0){
+                // console.log("帳號已存在");
+                return SignUpState.EXIST;
+            }
+
             const { data, error } = await supabase.auth.signUp({
                 email: email,
                 password: password
@@ -21,19 +36,19 @@ export const useUserStore = defineStore("user", {
 
             this.user = data?.user || null;
             this.error = error;
-
+            console.log(this.error)
             //添加權限
             if (this.user) {
-                await supabase.from("User_Role").insert([{ "id": this.user.id, "role": "user" }]);
+                await supabase.from("User_Role").insert([{ "id": this.user.id, "email": email, "role": "user" }]);
             }
 
             if (this.error) {
-                console.log("註冊失敗");
-                return false;
+                // console.log("註冊失敗");
+                return SignUpState.FAIL;
             }
 
-            console.log("註冊成功");
-            return true;
+            // console.log("註冊成功");
+            return SignUpState.SUCCESS;
 
         },
 
@@ -46,11 +61,11 @@ export const useUserStore = defineStore("user", {
             this.error = error;
 
             if (this.error) {
-                console.log("登入失敗");
+                // console.log("登入失敗");
                 return false;
             }
 
-            console.log("登入成功");
+            // console.log("登入成功");
             await this.getRole();
             return true;
 
@@ -60,12 +75,12 @@ export const useUserStore = defineStore("user", {
             const { error } = await supabase.auth.signOut();
 
             if (error) {
-                console.log("登出失敗");
+                // console.log("登出失敗");
             } else {
                 this.user = null;
                 this.error = null;
                 this.role = null;
-                console.log("登出成功");
+                // console.log("登出成功");
             }
         },
 

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useWindowStore } from '@/stores/useWindowStore';
 import Modal from './Modal.vue';
 import CloseIcon from '@/icons/CloseIcon.vue';
 import { useUserStore } from '@/stores/useUserStore';
@@ -7,12 +6,17 @@ import { ref } from 'vue';
 import { handleClickRouter } from '@/common';
 import { paths } from '@/router/index';
 
-const windowStore = useWindowStore();
+import { showToast } from '@/utils/toast';
 
-const close = () => {
-    windowStore.closeWindow("modal");
-    windowStore.closeWindow("loginWindow");
+const props = defineProps<{
+    onClose: Function
+}>()
+
+//更新彈窗事件
+const closeHandle = () => {
+    props.onClose?.();
 }
+
 
 const userStore = useUserStore();
 
@@ -20,14 +24,31 @@ const email = ref<string>("");
 const passward = ref<string>("");
 
 const signUpClickHandle = async () => {
-    await userStore.signUp(email.value, passward.value);
+    const state = await userStore.signUp(email.value, passward.value);
+
+    switch (state) {
+        case userStore.SignUpState.EXIST:
+            showToast("帳號已存在");
+            break;
+        case userStore.SignUpState.FAIL:
+            showToast("註冊失敗");
+            break;
+        case userStore.SignUpState.SUCCESS:
+            closeHandle();
+            showToast("註冊成功");
+        default:
+            break;
+    }
 }
 
 const signInClickHandle = async () => {
     const success = await userStore.signIn(email.value, passward.value);
     if (success) {
-        handleClickRouter({path: paths.homeView})
-        close();
+        closeHandle();
+        showToast("登入成功");
+    }
+    else {
+        showToast("登入失敗");
     }
 
 }
@@ -37,7 +58,7 @@ const signInClickHandle = async () => {
 
 <template>
     <Modal>
-        <div class="container" v-if="windowStore.loginWindowVisible">
+        <div class="container">
             <div class="title"> 登入/註冊</div>
             <div class="main">
                 <div class="tab-form">
@@ -48,7 +69,8 @@ const signInClickHandle = async () => {
                     <div class="line"></div>
                     <div class="form-item login-password">
                         <div class="form-info">密碼</div>
-                        <input type="password" name="" id="pwd" placeholder="請輸入密碼" v-model="passward" autocomplete="off">
+                        <input type="password" name="" id="pwd" placeholder="請輸入密碼" v-model="passward"
+                            autocomplete="off">
                     </div>
                 </div>
 
@@ -60,7 +82,7 @@ const signInClickHandle = async () => {
                 <div class="line"></div>
                 <div class="google-login">google</div>
             </div>
-            <div class="close-btn" @click="close">
+            <div class="close-btn" @click="closeHandle">
                 <CloseIcon></CloseIcon>
             </div>
         </div>

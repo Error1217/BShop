@@ -1,4 +1,5 @@
 import type { ICartItem } from "@/Interface/ICartItem";
+import type { IItem } from "@/Interface/IItem";
 import { createClient } from "@supabase/supabase-js";
 import type { UUID } from "crypto";
 
@@ -11,6 +12,40 @@ export const supabase = createClient(supabaseUrl, supabaseKey);
  * 新增 ---> 增刪查改
  * 
  */
+
+export async function setProduct(product: IItem) {
+    try {
+        //main table
+        const { data: data, error: error } = await supabase.from("Products").insert([{
+            name: product.name,
+            summary: product.summary,
+            image_url: product.image_url,
+        }]).select().single();
+
+        if (error) {
+            throw new Error(error.message);
+        }
+
+        console.log(data);
+        
+
+        // second table
+        const { error: secondError } = await supabase.from("Product_Variants").insert([{
+            product_id: data.id,
+            size: product.size,
+            price: product.price,
+            stock: product.stock,
+            sku: product.sku,
+        }]);
+
+        if (secondError) {
+            throw new Error(secondError.message);
+        }
+
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 export async function getProducts(columnName: string = "*") {
     try {
@@ -90,7 +125,7 @@ export async function setCartItem(userId: UUID, cartItem: ICartItem) {
     try {
         //先看user是否已加入
         const cart_item = await getCartItem(userId, cartItem.sku);
-        if(cart_item){
+        if (cart_item) {
             throw new Error("已擁有該商品");
         }
 
@@ -103,12 +138,12 @@ export async function setCartItem(userId: UUID, cartItem: ICartItem) {
             quantity: cartItem.quantity,
             size: cartItem.size,
             image_url: cartItem.image_url
-        }]);
+        }]).select().single();
 
         if (error) {
             throw new Error(error.message);
         }
-
+        console.log(data);
         return data;
 
     } catch (error) {

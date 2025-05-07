@@ -11,6 +11,8 @@ import { setCartItem, getSku } from '@/lib/supabaseClient';
 import type { UUID } from 'crypto';
 import type { ICartItem } from '@/Interface/ICartItem';
 
+import { showLogin } from '@/utils/login';
+
 const props = defineProps<{
     item: IItem,
     variants: any[]
@@ -21,15 +23,9 @@ const size = props.variants.map((item) => {
 })
 
 const userStore = useUserStore();
-const windowStore = useWindowStore();
-
-
-
-// console.log(_size);
 
 const openLoginWindow = () => {
-    windowStore.openWindow("modal");
-    windowStore.openWindow("loginWindow");
+    showLogin();
 }
 
 
@@ -83,6 +79,18 @@ const addItem = async () => {
 
 }
 
+const buyItem = ()=>{
+    const user = userStore.user;
+
+    if(user){
+
+    }else{
+        openLoginWindow();
+    }
+
+
+}
+
 const getSize = (size: string) => {
     product_size.value = size;
 }
@@ -111,7 +119,7 @@ const getSize = (size: string) => {
             </div>
             <div class="button-container">
                 <button type="button" class="btn-purchase-action" @click="addItem">加入購物車</button>
-                <button type="button" class="btn-purchase-action">直接購買</button>
+                <button type="button" class="btn-purchase-action" @click="buyItem">直接購買</button>
             </div>
         </div>
     </div>

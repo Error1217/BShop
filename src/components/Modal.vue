@@ -7,7 +7,7 @@ const windowStore = useWindowStore();
 </script>
 
 <template>
-    <div class="modal" v-if="windowStore.modalVisible">
+    <div class="modal">
         <slot></slot>
     </div>
 

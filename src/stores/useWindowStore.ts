@@ -1,9 +1,15 @@
+
+/**
+ * 已棄用
+ */
+
 import { defineStore } from "pinia";
 
 
 const windowMap = {
     modal: "modalVisible",
-    loginWindow: "loginWindowVisible"
+    loginWindow: "loginWindowVisible",
+    addProductWindow: "addProductWindowVisible"
 }
 
 export const useWindowStore = defineStore("window", {
@@ -11,6 +17,7 @@ export const useWindowStore = defineStore("window", {
         return{
             modalVisible: false,
             loginWindowVisible: false,
+            addProductWindowVisible: false,
         } as { [key: string]: boolean }
     } ,
     actions: {
